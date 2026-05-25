@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scratch בעידן ה-AI — NZ.TECH נס ציונה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --deep: #0D1F3C;
+    --teal: #0A8C8C;
+    --teal-lt: #14B8B8;
+    --gold: #F0A500;
+    --gold-lt: #FFD166;
+    --orange: #E8622A;
+    --cream: #F8F4EE;
+    --text: #1A1A2E;
+    --text-muted: #5A6478;
+    --g1: #1565C0;
+    --g2: #2E7D32;
+    --g3: #F57C00;
+    --g4: #C62828;
+    --card-bg: rgba(255,255,255,0.97);
+    --border: rgba(10,140,140,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    direction: rtl;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 60px;
+  }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(10,140,140,0.18) 0%, transparent 70%); top: -100px; left: -100px; }
+  .hero-orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(240,165,0,0.12) 0%, transparent 70%); bottom: -80px; right: -80px; }
+  .hero-orb-3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(232,98,42,0.1) 0%, transparent 70%); top: 40%; left: 60%; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,140,140,0.2);
+    border: 1px solid rgba(10,140,140,0.4);
+    color: var(--teal-lt);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--teal-lt); border-radius: 50%; }
+
+  .hero-q {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 820px;
+    margin-bottom: 16px;
+  }
+  .hero-q span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(15px, 2.5vw, 20px);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+
+  .hero-cards {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 820px;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-right: 3px solid var(--orange);
+    padding: 14px 20px;
+    border-radius: 8px;
+    max-width: 260px;
+    flex: 1 1 220px;
+  }
+  .hero-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .scroll-arrow {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: bounce 2s infinite;
+  }
+  .scroll-arrow span { display: block; width: 2px; height: 12px; background: rgba(255,255,255,0.3); border-radius: 2px; }
+  .scroll-arrow svg { opacity: 0.3; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+  .section-sm { padding: 60px 24px; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .section-label::before { content: ''; width: 20px; height: 2px; background: var(--teal); }
+
+  .section-title {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .section-title span { color: var(--teal); }
+
+  .section-intro {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 620px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  /* ── DIVIDER ── */
+  .stripe { height: 4px; background: linear-gradient(90deg, var(--teal), var(--gold), var(--orange)); }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+  .stat-card {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .stat-num {
+    font-family: 'Heebo', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .pillar {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .pillar:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(10,140,140,0.12); }
+  .pillar-num {
+    font-family: 'Heebo', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    opacity: 0.08;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .pillar-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .pillar-body { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── ANALOGY BLOCK ── */
+  .analogy-block {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .analogy-text h3 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .analogy-text p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.8; }
+  .analogy-vs {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+  }
+  .analogy-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px;
+    border-right: 3px solid;
+  }
+  .analogy-card.a { border-color: var(--gold); }
+  .analogy-card.b { border-color: var(--teal-lt); }
+  .analogy-card-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .analogy-card-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+  /* ── RESEARCH QUOTES ── */
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+  .quote-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+  }
+  .quote-mark {
+    font-family: 'Heebo', sans-serif;
+    font-size: 64px;
+    color: var(--teal);
+    opacity: 0.15;
+    position: absolute;
+    top: 8px;
+    right: 20px;
+    line-height: 1;
+  }
+  .quote-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.85;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .quote-source {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+  }
+  .quote-year { font-size: 11px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+
+  /* ── DARK SECTION ── */
+  .dark-section {
+    background: var(--navy);
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dark-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(10,140,140,0.02) 60px,
+      rgba(10,140,140,0.02) 61px
+    );
+  }
+  .dark-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+  /* ── SKILLS GRID ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .skill-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 24px;
+    transition: background .2s;
+  }
+  .skill-card:hover { background: rgba(255,255,255,0.07); }
+  .skill-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    font-size: 22px;
+  }
+  .skill-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .skill-body { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+  /* ── COMPARE BLOCK ── */
+  .compare-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .compare-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .compare-head {
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .compare-head.prompt { background: #B7791F; }
+  .compare-head.code { background: var(--teal); }
+  .compare-list { padding: 20px 24px; }
+  .compare-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-item::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+
+  /* ── DRAGON CALLOUT ── */
+  .dragon-callout {
+    background: linear-gradient(135deg, rgba(10,140,140,0.08) 0%, rgba(240,165,0,0.06) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(10,140,140,0.2);
+    padding: 32px 40px;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .dragon-callout h3 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .dragon-callout p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .dragon-callout strong { color: var(--navy); font-weight: 700; }
+
+  /* ── MARKET SECTION ── */
+  .market-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+  .market-big-num {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+  }
+  .market-big-num .num {
+    font-family: 'Heebo', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .market-big-num .label { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 8px; line-height: 1.5; }
+  .market-facts { display: flex; flex-direction: column; gap: 14px; }
+  .market-fact {
+    background: var(--card-bg);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    border-right: 4px solid var(--teal);
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .market-fact strong { color: var(--navy); }
+  .market-fact .source { font-size: 11px; color: var(--text-muted); margin-top: 4px; display: block; }
+
+  /* ── NZTECH SECTION ── */
+  .nztech-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .nztech-logo {
+    font-family: 'Heebo', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: -1px;
+  }
+  .nztech-logo span { color: var(--gold); }
+
+  .nztech-levels {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .nztech-level { padding: 24px; border-left: 1px solid var(--border); }
+  .nztech-level:first-child { border-left: none; }
+  .nztech-level-head {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #fff;
+  }
+  .nztech-level-items { list-style: none; }
+  .nztech-level-items li {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  .nztech-level-items li:last-child { border-bottom: none; }
+
+  /* ── ACHIEVEMENT BANNER ── */
+  .achievement-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2e50 100%);
+    border-radius: 16px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .achievement-num-block { text-align: center; }
+  .achievement-num {
+    font-family: 'Heebo', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .achievement-num-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .achievement-divider { width: 1px; background: rgba(255,255,255,0.1); height: 80px; }
+  .achievement-body h3 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .achievement-body p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  .achievement-badges { display: flex; flex-direction: column; gap: 10px; }
+  .achievement-badge {
+    background: rgba(240,165,0,0.15);
+    border: 1px solid rgba(240,165,0,0.3);
+    color: var(--gold-lt);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  /* ── STUDENT VOICES ── */
+  .voices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .voice-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+  }
+  .voice-text {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .voice-text::before { content: '"'; color: var(--teal); font-size: 24px; font-family: 'Heebo', sans-serif; margin-left: 4px; }
+  .voice-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .voice-meta::before { content: '—'; color: var(--teal); }
+
+  /* ── SAT STATS ── */
+  .sat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .sat-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+  }
+  .sat-pct {
+    font-family: 'Heebo', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--teal);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .sat-label { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── CONCLUSIONS ── */
+  .conclusions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .conclusion-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .conclusion-num {
+    font-family: 'Heebo', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--teal);
+    opacity: 0.3;
+    line-height: 1;
+  }
+  .conclusion-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .conclusion-body { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
+  /* ── CLOSING BANNER ── */
+  .closing {
+    background: var(--navy);
+    padding: 100px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-title {
+    font-family: 'Heebo', sans-serif;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .closing-title span { color: var(--gold); }
+  .closing-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.5);
+    max-width: 540px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+  .closing-quote {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--teal-lt);
+    max-width: 620px;
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    line-height: 1.8;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .pillars { grid-template-columns: repeat(2, 1fr); }
+    .research-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .compare-block { grid-template-columns: 1fr; }
+    .market-row { grid-template-columns: 1fr; }
+    .nztech-levels { grid-template-columns: repeat(2, 1fr); }
+    .achievement-banner { grid-template-columns: 1fr; text-align: center; }
+    .achievement-divider { display: none; }
+    .voices-grid { grid-template-columns: 1fr 1fr; }
+    .sat-row { grid-template-columns: repeat(2, 1fr); }
+    .analogy-block { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 580px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .pillars { grid-template-columns: 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .nztech-levels { grid-template-columns: 1fr 1fr; }
+    .voices-grid { grid-template-columns: 1fr; }
+    .sat-row { grid-template-columns: repeat(2, 1fr); }
+    .conclusion-card { grid-template-columns: 1fr; }
+  }
+
+  /* ── SCRATCH DEMO PLACEHOLDER ── */
+  .scratch-demo {
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin: 32px 0;
+    border: 1px solid rgba(99,102,241,0.3);
+  }
+  .scratch-demo-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.4);
+    color: #a5b4fc;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .scratch-demo-label::before { content: '▶'; font-size: 10px; }
+  .scratch-demo h4 { font-size: 18px; color: #e0e7ff; margin-bottom: 8px; }
+  .scratch-demo p { font-size: 13px; color: rgba(224,231,255,0.5); line-height: 1.7; }
+
+  /* ── SEPARATOR ── */
+  .sep { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--teal-lt);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal-lt); }
+
+  @media (max-width: 700px) { .nav-links { display: none; } }
+
+  @media (max-width: 860px) {
+    .update-two-col { grid-template-columns: 1fr !important; }
+    .update-four-col { grid-template-columns: 1fr !important; }
+    .update-bottom { grid-template-columns: 1fr !important; text-align: center; }
+  }
+
+  /* Fade in animation */
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity:0; }
+  .delay-2 { animation-delay: 0.25s; opacity:0; }
+  .delay-3 { animation-delay: 0.4s; opacity:0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>NZ</span>.TECH</a>
+  <ul class="nav-links">
+    <li><a href="#why">למה Scratch?</a></li>
+    <li><a href="#research">מחקר</a></li>
+    <li><a href="#skills">מיומנויות</a></li>
+    <li><a href="#nztech">התוכנית</a></li>
+    <li><a href="#results">תוצאות</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
+  <div class="hero-badge fade-up">תוכנית NzTech | נס ציונה 2026</div>
+
+  <h1 class="hero-q fade-up delay-1">
+    האם בעידן ה-AI<br>עדיין צריך ללמד<br><span>Scratch</span> בבית הספר?
+  </h1>
+
+  <p class="hero-sub fade-up delay-2">
+    שאלה שמנהלים שואלים. תשובה שהמחקר נותן. הנה הנתונים.
+  </p>
+
+  <div class="hero-cards fade-up delay-3">
+    <div class="hero-card"><p>"ChatGPT כותב קוד תוך שניות — למה ילדים צריכים לשבת שעות על בלוקים?"</p></div>
+    <div class="hero-card"><p>"ירידה של 28% במשרות entry-level — אולי זה פשוט לא רלוונטי יותר?"</p></div>
+    <div class="hero-card"><p>"כשיש Copilot ו-Claude — מה הסיכוי שישתמשו ב-Scratch בחיי המבוגרים?"</p></div>
+  </div>
+
+  <div class="scroll-arrow">
+    <span></span>
+    <svg width="16" height="10" fill="none"><path d="M1 1l7 7 7-7" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- STEM SECTION -->
+<div id="stem" style="background: var(--cream);">
+<div class="section">
+  <div class="section-label">STEM — המסגרת הגדולה</div>
+  <h2 class="section-title">למה <span>STEM</span> הוא הבסיס<br>להצלחה בעולם המשתנה</h2>
+  <p class="section-intro">לפני שמדברים על Scratch ועל AI — צריך להבין את התמונה הגדולה. STEM אינו תחום לימוד. הוא תפיסת עולם.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:36px; align-items:start;">
+    <div>
+      <div style="background:var(--navy); border-radius:14px; padding:32px; margin-bottom:20px;">
+        <div style="font-size:13px; font-weight:700; letter-spacing:1px; color:var(--teal-lt); text-transform:uppercase; margin-bottom:14px;">מה זה STEM?</div>
+        <p style="font-size:15px; color:rgba(255,255,255,0.85); line-height:1.85; margin-bottom:16px;">
+          <strong style="color:var(--gold);">S</strong>cience · <strong style="color:var(--gold);">T</strong>echnology · <strong style="color:var(--gold);">E</strong>ngineering · <strong style="color:var(--gold);">M</strong>athematics
+        </p>
+        <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.85;">
+          STEM הוא חינוך המשלב ארבעה תחומים לא כמקצועות נפרדים — אלא כגישה אחת לפתרון בעיות אמיתיות. הלומד לא רוכש ידע: הוא רוכש כלים לרכוש ידע.
+        </p>
+      </div>
+      <div style="background:var(--card-bg); border-radius:14px; padding:28px; border:1px solid var(--border);">
+        <div style="font-size:13px; font-weight:700; color:var(--teal); margin-bottom:14px; letter-spacing:0.5px;">למה זה מנבא הצלחה בשוק העבודה?</div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:6px; height:6px; background:var(--teal); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+            <p style="font-size:13.5px; color:var(--text-muted); line-height:1.7;">לומדי STEM מפתחים <strong style="color:var(--text);">חשיבה מערכתית</strong> — יכולת לראות איך חלקים מחוברים למכלול</p>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:6px; height:6px; background:var(--orange); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+            <p style="font-size:13.5px; color:var(--text-muted); line-height:1.7;">הם רגילים ל<strong style="color:var(--text);">כישלון כשלב בתהליך</strong> — לא כתוצאה סופית</p>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:6px; height:6px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+            <p style="font-size:13.5px; color:var(--text-muted); line-height:1.7;">הם יודעים <strong style="color:var(--text);">לשאול שאלות טובות</strong> — כישור שנדרש לתפעל AI ביעילות</p>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <div style="width:6px; height:6px; background:"553C9A"; border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+            <p style="font-size:13.5px; color:var(--text-muted); line-height:1.7;"><strong style="color:var(--text);">65% מהמשרות</strong> הצומחות ב-2030 דורשות יכולות STEM בסיסיות — גם לא-הנדסיות (WEF 2025)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+        <div style="background:var(--g1); padding:16px 22px;">
+          <div style="font-size:15px; font-weight:700; color:#fff;">📐 מדע וטכנולוגיה — הבנת העולם</div>
+        </div>
+        <div style="padding:18px 22px; font-size:13.5px; color:var(--text-muted); line-height:1.75;">
+          חינוך STEM מלמד ילדים לא רק מה קורה — אלא <strong style="color:var(--text);">למה</strong> זה קורה. ההבנה הזו היא שמאפשרת חדשנות אמיתית, לא שינון.
+        </div>
+      </div>
+      <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+        <div style="background:var(--g2); padding:16px 22px;">
+          <div style="font-size:15px; font-weight:700; color:#fff;">🔧 הנדסה — מחשבה ליצירה</div>
+        </div>
+        <div style="padding:18px 22px; font-size:13.5px; color:var(--text-muted); line-height:1.75;">
+          STEM לא מסתיים בהבנה — הוא דורש <strong style="color:var(--text);">מימוש</strong>. תכנון, בנייה, בדיקה, תיקון. תהליך שמוציא רעיונות מהראש למציאות.
+        </div>
+      </div>
+      <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+        <div style="background:var(--orange); padding:16px 22px;">
+          <div style="font-size:15px; font-weight:700; color:#fff;">📊 מתמטיקה — שפת הבסיס</div>
+        </div>
+        <div style="padding:18px 22px; font-size:13.5px; color:var(--text-muted); line-height:1.75;">
+          מתמטיקה בהקשר STEM אינה חישובים — היא <strong style="color:var(--text);">חשיבה מדויקת</strong>. היכולת לנסח, להוכיח ולהפריך. זו בדיוק השפה שבה AI "מדבר".
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg, rgba(10,140,140,0.08) 0%, rgba(240,165,0,0.06) 100%); border-radius:12px; border:1px solid rgba(10,140,140,0.2); padding:18px 22px; text-align:center;">
+        <p style="font-size:14px; font-weight:700; color:var(--navy); line-height:1.7;">חינוך STEM הוא לא הכשרה למקצוע.<br>הוא הכשרה ל<span style="color:var(--teal);">לחשוב כמו מי שפותר בעיות</span>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SCRATCH WORLDWIDE STATS -->
+<div id="why" style="background:#fff; padding: 0;">
+<div class="section">
+  <div class="section-label">Scratch בעולם</div>
+  <h2 class="section-title">הנתונים שהופכים את ה<span>שאלה</span> לפשוטה</h2>
+  <p class="section-intro">Scratch היא לא כלי שרירותי — היא תוצר של 18 שנות מחקר ב-MIT Media Lab, שנבחרה על ידי משרד החינוך כסביבת הלמידה הרשמית לחינוך היסודי.</p>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <span class="stat-num">140M+</span>
+      <div class="stat-label">ילדים בעולם<br>משתמשים ב-Scratch</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">1B+</span>
+      <div class="stat-label">פרויקטים נוצרו<br>על הפלטפורמה</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">21.5M</span>
+      <div class="stat-label">משתמשים חדשים<br>נרשמו ב-2024 בלבד</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">160+</span>
+      <div class="stat-label">מדינות שבהן<br>Scratch בשימוש</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="sep"></div>
+
+<!-- RESNICK SCRATCH PHILOSOPHY -->
+<div style="background: var(--navy);">
+<div class="section">
+  <div class="section-label" style="color:var(--teal-lt);">התפיסה החינוכית</div>
+  <h2 class="section-title" style="color:#fff;">פרופ' מיטשל רזניק —<br><span style="color:var(--teal-lt);">האיש שבנה את Scratch</span></h2>
+
+  <div style="display:grid; grid-template-columns:1fr 1.6fr; gap:36px; align-items:start; margin-bottom:36px;">
+    <div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:28px; margin-bottom:16px;">
+        <div style="font-size:13px; font-weight:700; color:var(--gold); letter-spacing:0.5px; margin-bottom:12px;">פרופ' מיטשל רזניק</div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.7); line-height:1.85;">ראש קבוצת Lifelong Kindergarten במעבדת המדיה של MIT. חוקר חינוך טכנולוגי מאז 1992. מאמין אחד: <strong style="color:#fff;">ילדים לומדים הכי טוב כשהם יוצרים דברים שאחרים יכולים לחוות.</strong></p>
+      </div>
+      <div style="background:rgba(10,140,140,0.15); border:1px solid rgba(10,140,140,0.3); border-radius:12px; padding:22px;">
+        <p style="font-size:14px; color:var(--teal-lt); line-height:1.85; font-style:italic;">"The goal is not to prepare kids for today's economy, but to help them thrive in tomorrow's society — whatever it looks like."</p>
+        <p style="font-size:12px; color:rgba(255,255,255,0.35); margin-top:8px;">— Mitchell Resnick, Lifelong Kindergarten (2017)</p>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="font-size:13px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">עקרונות הבסיס של Scratch</div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:16px 20px; display:flex; gap:14px; align-items:flex-start;">
+        <div style="font-size:22px; flex-shrink:0;">🌀</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:4px;">ספירלה יצירתית — Creative Spiral</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.55); line-height:1.7;">דמיין → צור → שחק → שתף → חשוב → דמיין מחדש. לא קו ישר אלא תהליך חוזר שמעמיק כל פעם.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:16px 20px; display:flex; gap:14px; align-items:flex-start;">
+        <div style="font-size:22px; flex-shrink:0;">🏗️</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:4px;">קונסטרוקציוניזם — Learning by Making</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.55); line-height:1.7;">על בסיס תיאוריית Papert: ילדים לא סופגים ידע — הם בונים אותו. הבנה אמיתית קורית רק כשיוצרים משהו שאפשר לשתף עם אחרים.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:16px 20px; display:flex; gap:14px; align-items:flex-start;">
+        <div style="font-size:22px; flex-shrink:0;">🧩</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:4px;">נמוך רצפה, גבוה תקרה, קירות רחבים</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.55); line-height:1.7;">Low floor (קל להתחיל), High ceiling (אפשר להגיע רחוק), Wide walls (מגוון דרכי ביטוי). עיצוב שמכבד כל לומד בכל רמה.</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:16px 20px; display:flex; gap:14px; align-items:flex-start;">
+        <div style="font-size:22px; flex-shrink:0;">🌍</div>
+        <div>
+          <div style="font-size:14px; font-weight:700; color:#fff; margin-bottom:4px;">קהילה עולמית — Sharing by Design</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.55); line-height:1.7;">Scratch נבנה סביב שיתוף. כל פרויקט פתוח לעריכה, כל קוד ניתן ללמוד ממנו. ילד בנס ציונה יכול להרחיב פרויקט של ילד מיפן.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline strip -->
+  <div style="background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid rgba(255,255,255,0.07); padding:24px 32px;">
+    <div style="font-size:12px; font-weight:700; color:rgba(255,255,255,0.35); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px;">Scratch — ציר הזמן</div>
+    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative;">
+      <div style="position:absolute; top:14px; right:10%; left:10%; height:2px; background:linear-gradient(90deg, var(--teal), var(--gold)); border-radius:2px;"></div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="width:28px; height:28px; background:var(--teal); border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700;">92</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.5;">רזניק מתחיל<br>מחקר ב-MIT</div>
+      </div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="width:28px; height:28px; background:var(--teal); border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700;">07</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.5;">Scratch 1.0<br>משוחרר לעולם</div>
+      </div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="width:28px; height:28px; background:var(--teal); border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700;">13</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.5;">Scratch 2.0<br>עובר לענן</div>
+      </div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="width:28px; height:28px; background:var(--gold); border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--navy); font-weight:700;">19</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.5;">Scratch 3.0<br>מובייל + נגישות</div>
+      </div>
+      <div style="text-align:center; position:relative; z-index:1;">
+        <div style="width:28px; height:28px; background:var(--orange); border-radius:50%; margin:0 auto 8px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:700;">26</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.7); line-height:1.5; font-weight:600;">140M+ ילדים<br>160+ מדינות</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- WHAT IS CT -->
+<div style="background: var(--cream);">
+<div class="section">
+  <div class="section-label">חשיבה מחשובית</div>
+  <h2 class="section-title">לא לומדים לכתוב קוד —<br><span>לומדים לחשוב</span></h2>
+  <p class="section-intro">כשמלמדים ילדים לבשל — המטרה אינה להכין שפים. המטרה: תכנון, התמדה, פתרון בעיות, הבנת תהליך. Scratch הוא הכלי — חשיבה מחשובית היא המטרה.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">1</div>
+      <div class="pillar-title">פירוק בעיות</div>
+      <div class="pillar-body">לחתוך בעיה גדולה לשלבים קטנים ולוגיים — כישור שמעביר לכל תחום בחיים</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">2</div>
+      <div class="pillar-title">זיהוי דפוסים</div>
+      <div class="pillar-body">לראות מה חוזר על עצמו, מה דומה, מה ניתן לשימוש חוזר במצבים שונים</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">3</div>
+      <div class="pillar-title">הפשטה</div>
+      <div class="pillar-body">להתמקד בעיקר ולהתעלם מהשאר — מה שמאפשר לראות את התמונה הגדולה</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">4</div>
+      <div class="pillar-title">אלגוריתמיקה</div>
+      <div class="pillar-body">לבנות פתרון מדויק שלב אחר שלב — הבסיס לכל הפעלה יעילה של AI</div>
+    </div>
+  </div>
+
+  <!-- BRIDGE: CT → AI -->
+  <div style="background: linear-gradient(135deg, rgba(10,140,140,0.07) 0%, rgba(240,165,0,0.05) 100%); border-radius: 16px; border: 1px solid rgba(10,140,140,0.18); padding: 32px 36px; margin: 8px 0 36px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+      <div style="width:36px; height:36px; background:var(--teal); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;">🔗</div>
+      <h3 style="font-size:18px; font-weight:700; color:var(--navy); line-height:1.3;">אלה לא רק מיומנויות תכנות — הן הבסיס לתקשורת חכמה עם AI</h3>
+    </div>
+    <p style="font-size:15px; color:var(--text-muted); line-height:1.85; max-width:780px;">
+      ההבדל בין פרומפט שמייצר תוצאה גנרית לפרומפט שמייצר בדיוק מה שרצית — הוא בדיוק 4 המיומנויות האלה.
+      מי שלמד לפרק בעיה, לזהות דפוסים, להפשיט ולחשוב אלגוריתמית — לא רק כותב קוד טוב יותר.
+      הוא <strong style="color:var(--navy);">מתקשר עם AI טוב יותר</strong>. הוא יודע לנסח, לדייק, לפצל ולהנחות — כי הוא כבר חשב את הבעיה לעומקה.
+    </p>
+  </div>
+
+  <!-- PROMPT COMPARISON -->
+  <div style="margin-bottom:12px;">
+    <div style="font-size:12px; font-weight:700; letter-spacing:1.2px; color:var(--text-muted); text-transform:uppercase; margin-bottom:14px;">דוגמה קונקרטית — אותו ילד, אותו AI, שני פרומפטים שונים</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px;">
+    <div style="border-radius:12px; overflow:hidden; border:1px solid rgba(200,53,43,0.25);">
+      <div style="background:#C8352B; padding:12px 20px; display:flex; align-items:center; gap:8px;">
+        <span style="font-size:16px;">❌</span>
+        <span style="font-size:13px; font-weight:700; color:#fff;">לפני — ילד ללא חשיבה מחשובית</span>
+      </div>
+      <div style="background:#FFF8F8; padding:20px;">
+        <div style="background:#fff; border-radius:8px; border:1px solid rgba(200,53,43,0.15); padding:14px 16px; margin-bottom:14px;">
+          <div style="font-size:11px; font-weight:700; color:#C8352B; letter-spacing:0.8px; margin-bottom:6px;">הפרומפט שנשלח ל-AI</div>
+          <div style="font-size:14px; color:#333; font-style:italic; line-height:1.6;">"תעשה לי משחק כדורגל"</div>
+        </div>
+        <div style="font-size:12px; font-weight:700; color:#C8352B; margin-bottom:8px;">מה ה-AI מייצר:</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+          <li style="font-size:13px; color:#666; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid #E57373; line-height:1.5;">כדור שזזז על המסך — ללא חוקים</li>
+          <li style="font-size:13px; color:#666; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid #E57373; line-height:1.5;">אין ניקוד, אין מטרה, אין סיום</li>
+          <li style="font-size:13px; color:#666; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid #E57373; line-height:1.5;">AI ניחש מה "כדורגל" אומר</li>
+          <li style="font-size:13px; color:#666; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid #E57373; line-height:1.5;">התוצאה: גנרית, לא מה שדמיין</li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-radius:12px; overflow:hidden; border:1px solid rgba(10,140,140,0.25);">
+      <div style="background:var(--teal); padding:12px 20px; display:flex; align-items:center; gap:8px;">
+        <span style="font-size:16px;">✅</span>
+        <span style="font-size:13px; font-weight:700; color:#fff;">אחרי — ילד עם חשיבה מחשובית</span>
+      </div>
+      <div style="background:#F0FAFA; padding:20px;">
+        <div style="background:#fff; border-radius:8px; border:1px solid rgba(10,140,140,0.2); padding:14px 16px; margin-bottom:14px;">
+          <div style="font-size:11px; font-weight:700; color:var(--teal); letter-spacing:0.8px; margin-bottom:6px;">הפרומפט שנשלח ל-AI</div>
+          <div style="font-size:13px; color:#333; font-style:italic; line-height:1.8;">"צור משחק שבו שחקן זזז שמאלה-ימינה ומנסה לתפוס כדורים נופלים. כל כדור שנתפס = נקודה. כדור שפוספס = אובדן חיים. ב-10 נקודות — ניצחת. ב-3 החמצות — הפסדת. הכדורים יתחילו ליפול מהר יותר כל 3 נקודות."</div>
+        </div>
+        <div style="font-size:12px; font-weight:700; color:var(--teal); margin-bottom:8px;">מה ה-AI מייצר:</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:6px;">
+          <li style="font-size:13px; color:#444; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid var(--teal-lt); line-height:1.5;">משחק שלם עם לוגיקה ברורה</li>
+          <li style="font-size:13px; color:#444; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid var(--teal-lt); line-height:1.5;">ניקוד, חיים, ניצחון, הפסד — הכל</li>
+          <li style="font-size:13px; color:#444; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid var(--teal-lt); line-height:1.5;">רמת קושי עולה — בדיוק כפי שביקש</li>
+          <li style="font-size:13px; color:#444; padding:6px 10px; background:#fff; border-radius:6px; border-right:3px solid var(--teal-lt); line-height:1.5;">בדיוק מה שדמיין — ממש אותו AI</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS TABLE -->
+  <div style="margin-bottom:10px;">
+    <div style="font-size:12px; font-weight:700; letter-spacing:1.2px; color:var(--text-muted); text-transform:uppercase; margin-bottom:14px;">למה הפרומפט השני טוב יותר? — כי הילד השתמש ב-4 המיומנויות</div>
+  </div>
+
+  <div style="border-radius:12px; overflow:hidden; border:1px solid var(--border); margin-bottom:28px;">
+    <div style="display:grid; grid-template-columns:130px 1fr 1fr; background:var(--navy);">
+      <div style="padding:12px 16px; font-size:12px; font-weight:700; color:var(--gold); letter-spacing:0.5px;">מיומנות</div>
+      <div style="padding:12px 16px; font-size:12px; font-weight:700; color:rgba(255,255,255,0.5); border-right:1px solid rgba(255,255,255,0.08); border-left:1px solid rgba(255,255,255,0.08);">❌ ללא חשיבה מחשובית</div>
+      <div style="padding:12px 16px; font-size:12px; font-weight:700; color:var(--teal-lt);">✅ עם חשיבה מחשובית</div>
+    </div>
+    <div style="display:grid; grid-template-columns:130px 1fr 1fr; border-top:1px solid var(--border); background:#fff;">
+      <div style="padding:14px 16px; border-left:1px solid var(--border);"><div style="font-size:12px; font-weight:700; color:var(--teal);">1. פירוק בעיות</div></div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text-muted); line-height:1.6; border-left:1px solid var(--border);">"כדורגל" — לא פורק לחלקים. AI מנחש מה הכוונה</div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text); line-height:1.6;">שחקן / כדור / ניקוד / חיים / סיום — כל מרכיב הוגדר בנפרד</div>
+    </div>
+    <div style="display:grid; grid-template-columns:130px 1fr 1fr; border-top:1px solid var(--border); background:#F8F9FA;">
+      <div style="padding:14px 16px; border-left:1px solid var(--border);"><div style="font-size:12px; font-weight:700; color:var(--teal);">2. זיהוי דפוסים</div></div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text-muted); line-height:1.6; border-left:1px solid var(--border);">לא מבחין שיש דפוס חוזר: כדור → פגיעה → תגובה</div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text); line-height:1.6;">מזהה: כל X נקודות הקושי עולה — מנסח את הדפוס בפרומפט</div>
+    </div>
+    <div style="display:grid; grid-template-columns:130px 1fr 1fr; border-top:1px solid var(--border); background:#fff;">
+      <div style="padding:14px 16px; border-left:1px solid var(--border);"><div style="font-size:12px; font-weight:700; color:var(--teal);">3. הפשטה</div></div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text-muted); line-height:1.6; border-left:1px solid var(--border);">לא ברור מה חשוב ומה לא. AI מוצף או מנחש לבד</div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text); line-height:1.6;">מזקק: שחקן, כדור, ניקוד, חיים — רק מה שנדרש. ה-AI לא מנחש</div>
+    </div>
+    <div style="display:grid; grid-template-columns:130px 1fr 1fr; border-top:1px solid var(--border); background:#F8F9FA;">
+      <div style="padding:14px 16px; border-left:1px solid var(--border);"><div style="font-size:12px; font-weight:700; color:var(--teal);">4. אלגוריתמיקה</div></div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text-muted); line-height:1.6; border-left:1px solid var(--border);">אין סדר פעולות. AI מחליט לבד על הלוגיקה</div>
+      <div style="padding:14px 16px; font-size:13px; color:var(--text); line-height:1.6;">"כדור פוספס → הפחת חיים → בדוק אם נגמרו → סיים" — לוגיקה ברורה</div>
+    </div>
+  </div>
+
+  <!-- PUNCHLINE -->
+  <div style="background:var(--navy); border-radius:12px; padding:24px 32px; text-align:center; margin-bottom:28px;">
+    <p style="font-size:17px; font-weight:700; color:#fff; line-height:1.7; margin-bottom:6px;">Scratch לא מלמד לכתוב קוד.</p>
+    <p style="font-size:15px; color:var(--teal-lt); line-height:1.7;">הוא מלמד לחשוב בצורה שגורמת ל-AI להבין אותך — ולספק בדיוק מה שרצית.</p>
+  </div>
+
+  <!-- SCRATCH DEMO PLACEHOLDER 1 -->
+  <div class="scratch-demo">
+    <div class="scratch-demo-label">תוצר מ-Scratch</div>
+    <h4>כאן יוצג פרויקט Scratch של תלמידים מנס ציונה</h4>
+    <p>לדוגמה: משחק שנבנה על ידי תלמידי כיתה ז' — כל לחיצה על חץ, כל מהירות דמות, כל תגובה לקיר — החלטה של הילד</p>
+  </div>
+</div>
+</div>
+
+
+<!-- DARK — SKILLS SECTION -->
+<div id="skills" class="dark-section">
+<div class="dark-inner">
+  <div class="section-label" style="color: var(--teal-lt);">המיומנויות שנבנות</div>
+  <h2 class="section-title" style="color: #fff; margin-bottom: 16px;">לא כישורי תכנות —<br><span style="color: var(--teal-lt);">כישורי חיים</span></h2>
+  <p class="section-intro" style="color: rgba(255,255,255,0.55);">אלה לא כישורים שמיועדים למי שרוצה להיות מפתח. הם מיועדים לכל מי שרוצה לחשוב.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon" style="background: rgba(10,140,140,0.15);">🧠</div>
+      <div class="skill-title">פתרון בעיות</div>
+      <div class="skill-body">לפרק, לבנות, לנסות — מאה החלטות קטנות בדרך לתוצאה. שום פרומפט לא מחליף את התהליך הזה. הוא מה שבונה את המוח.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background: rgba(232,98,42,0.15);">💪</div>
+      <div class="skill-title">חוסן לימודי</div>
+      <div class="skill-body">הבאג שלא עבד חצי שעה ובסוף נפתר — שם נבנה הביטחון העצמי האמיתי. ניפוי שגיאות (Debugging) הוא כלי חינוכי נדיר שמנרמל כישלון.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background: rgba(240,165,0,0.15);">🎨</div>
+      <div class="skill-title">יצירתיות עמוקה</div>
+      <div class="skill-body">הילד קובע מה קורה כשלוחצים חץ, כמה מהר הדמות זזה, ומה קורה כשהיא נתקעת בקיר. הוא הצייר — לא רק הבמאי.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background: rgba(21,101,192,0.15);">🤝</div>
+      <div class="skill-title">שיתופיות</div>
+      <div class="skill-body">פרויקטים משותפים, קוד משותף, תקשורת על לוגיקה. מיומנות חיים שלא ניתן לבטל בפרומפט ולא ניתן ללמוד בלי לעבוד עם אחרים.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background: rgba(46,125,50,0.15);">🚀</div>
+      <div class="skill-title">סוכנות אישית</div>
+      <div class="skill-body">מצרכן פסיבי ליוצר פעיל. ילד שבנה משחק לא מחכה שה-AI יבנה בשבילו — הוא כבר יודע שהוא יכול. זה ההבדל הקריטי.</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background: rgba(99,102,241,0.15);">🔑</div>
+      <div class="skill-title">הבנת AI עמוקה</div>
+      <div class="skill-body">מי שמבין לוגיקה ואלגוריתמים — יפעיל AI חכם יותר. חשיבה מחשובית לא מתחרה ב-AI: היא המפתח לתפעלו נכון.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- RESEARCH SECTION -->
+<div id="research" style="background: #fff;">
+<div class="section">
+  <div class="section-label">מחקר עדכני 2023–2026</div>
+  <h2 class="section-title">מה אומרים המחקרים <span>המדעיים?</span></h2>
+  <p class="section-intro">קונצנזוס רחב בקרב חוקרי חינוך, מדעני מחשב ופסיכולוגים קוגניטיביים — לא על דעה, אלא על נתונים.</p>
+
+  <div class="research-grid">
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">8 שיעורים בלבד של פעילויות Scratch שיפרו כישורי תכנון וויסות עצמי בצורה שקולה לשיפור של 7 חודשי לימוד רגיל. ההשפעה על תפקודים ניהוליים (Executive Functions) היא המשמעותית ביותר.</div>
+      <div class="quote-source">Computers & Education — Meta-Analysis</div>
+      <div class="quote-year">2024 | 19 מחקרים, 1,523 ילדים בגילאי 4–16</div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">ילדים שלמדו Scratch הראו שיפור משמעותי גם בציוני הכתיבה בשפה — העברה קוגניטיבית (Transfer of Learning) מעבר לתחום הטכנולוגי. חשיבה מחשובית אינה מיומנות בידודית.</div>
+      <div class="quote-source">Thompson & Childers — Journal of Educational Research</div>
+      <div class="quote-year">2021 | Google CS First Storytelling, כיתות ה'</div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">ילדים עדיין צריכים ללמוד לקודד בעידן ה-AI. כתיבת קוד היא הדרך הטובה ביותר לפתח מודלים מנטליים — בדיוק כפי שכתיבה יצירתית בונה אוריינות, גם כשה-AI יכול לכתוב סיפורים.</div>
+      <div class="quote-source">Raspberry Pi Foundation — Position Paper</div>
+      <div class="quote-year">יוני 2025 | Why Kids Still Need to Learn to Code</div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">מפתחים שהשתמשו ב-AI לצורך יצירת קוד (cognitive offloading) קיבלו ציונים נמוכים ב-17% במבחני הבנה. לעומת זאת, שימוש ב-AI לשאלות מושגיות הוביל לציוני 65%+. ההבדל: מעורבות קוגניטיבית.</div>
+      <div class="quote-source">Anthropic Research — Skill Formation Study</div>
+      <div class="quote-year">2026 | Peer-reviewed, validated independently</div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">אי אפשר להבין את המגבלות של AI, את ההטיות שלו (Bias) ואת ההיבטים האתיים שלו, מבלי להבין את הבסיס הלוגי והאלגוריתמי. AI Literacy מבוססת על חשיבה מחשובית — לא מחליפה אותה.</div>
+      <div class="quote-source">UNESCO / ACM — AI Literacy Framework</div>
+      <div class="quote-year">2024 | K-12 AI Curricula Global Survey</div>
+    </div>
+
+    <div class="quote-card">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">39% ממיומנויות הליבה בשוק העבודה יצטרכו להשתנות עד 2030. בראש הרשימה: חשיבה אנליטית (70%), חוסן וגמישות (67%), חשיבה יצירתית (57%). כולן מתפתחות דרך חשיבה מחשובית.</div>
+      <div class="quote-source">World Economic Forum — Future of Jobs Report</div>
+      <div class="quote-year">2025 | 1,000+ מעסיקים, 55 כלכלות</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+
+<!-- PROMPT VS CODE -->
+<div style="background: var(--cream);">
+<div class="section">
+  <div class="section-label">כשאתה בונה — לא רק מבקש</div>
+  <h2 class="section-title">יצירתיות, חוסן וסוכנות אישית —<br><span>מה רק תכנות יכול לבנות</span></h2>
+
+  <div class="dragon-callout">
+    <h3>🐉 "תצייר לי דרקון ירוק מנצח אביר"</h3>
+    <p>ה-AI מחליט על הזווית, האור, הגלימה, כל פרט. הילד הוא הבמאי — לא הצייר.<br><strong>גדול, אבל לא מספיק.</strong> כשאתה כותב קוד ב-Scratch, אתה מקבל מאה החלטות קטנות בדרך. אלה ההחלטות שבונות מוח.</p>
+  </div>
+
+  <div class="compare-block">
+    <div class="compare-card">
+      <div class="compare-head prompt">✍️ כתיבת פרומפט</div>
+      <div class="compare-list">
+        <div class="compare-item">סיפוק מיידי — תוצאה תוך שניות</div>
+        <div class="compare-item">הילד הוא הבמאי, ה-AI הוא הצייר</div>
+        <div class="compare-item">החלטות ה-AI הן blackbox</div>
+        <div class="compare-item">אין כישלון → אין חוסן</div>
+        <div class="compare-item">יצירתיות: ברמת הכיוון הכללי בלבד</div>
+      </div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-head code">⚙️ בניית קוד ב-Scratch</div>
+      <div class="compare-list">
+        <div class="compare-item">מאה החלטות קטנות בדרך לתוצאה</div>
+        <div class="compare-item">הילד קובע כל פרט — מהירות, כיוון, תגובה</div>
+        <div class="compare-item">לוגיקה גלויה לחלוטין — ניתן לנתח</div>
+        <div class="compare-item">כישלון + Debugging = חוסן אמיתי</div>
+        <div class="compare-item">יצירתיות: ברמת הביצוע המלא</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRATCH DEMO PLACEHOLDER 2 -->
+  <div class="scratch-demo">
+    <div class="scratch-demo-label">הדגמה חיה</div>
+    <h4>כאן יוצג תוצר Scratch — אנימציה או משחק שנבנה על ידי תלמיד</h4>
+    <p>המטרה: להראות את הקוד מאחורי התוצר — כל בלוק הוא החלטה שהילד קיבל</p>
+  </div>
+
+  <div style="background: var(--navy); border-radius: 12px; padding: 24px 32px; margin-top: 8px;">
+    <p style="color: var(--teal-lt); font-size: 15px; font-style: italic; text-align: center; line-height: 1.8;">
+      "שום פרומפט לא יכול להחליף את הרגע שבו פיצחת בעיה בעצמך. שם נבנה הביטחון העצמי האמיתי."
+    </p>
+  </div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- MARKET SECTION -->
+<div style="background: #fff;">
+<div class="section">
+  <div class="section-label">שוק העבודה 2025–2030</div>
+  <h2 class="section-title">מה השוק <span>באמת מחפש?</span></h2>
+  <p class="section-intro">הירידה בביקוש לתפקידי entry-level אינה ירידה בביקוש לחשיבה מחשובית — בדיוק להפך.</p>
+
+  <div class="market-row">
+    <div class="market-big-num">
+      <span class="num">39%</span>
+      <div class="label">ממיומנויות הליבה<br>יצטרכו להשתנות<br>עד 2030</div>
+      <div style="margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.3);">WEF Future of Jobs 2025</div>
+    </div>
+    <div class="market-facts">
+      <div class="market-fact">
+        <strong>חשיבה אנליטית — מיומנות #1</strong><br>
+        לפי WEF 2025, 70% מהמעסיקים מגדירים חשיבה אנליטית כמיומנות ליבה קריטית. זה בדיוק מה ש-Scratch מפתח.
+        <span class="source">World Economic Forum, Future of Jobs Report 2025</span>
+      </div>
+      <div class="market-fact">
+        <strong>ירידה בכניסה, עלייה בדרישות</strong><br>
+        28% פחות משרות entry-level ב-2026 — אבל מי שמבין עקרונות, לא רק syntax, משגשג. "המפתחים שהצליחו על ידי 'ידיעת הframeworks' נאבקים כעת. אלה שהבינו למה מערכות עובדות כפי שהן — משגשגים."
+        <span class="source">Stack Overflow Developer Survey 2025 | LinkedIn Workforce Report</span>
+      </div>
+      <div class="market-fact">
+        <strong>הפרומפט כמראה לחשיבה</strong><br>
+        כתיבת פרומפט איכותי למערכת AI מורכבת דורשת הבנה של מבני נתונים, תהליכים לוגיים ותנאים. מי שלא יודע לחשוב כמו מתכנת — לא ידע להנחות AI להגיע לתוצאה אופטימלית.
+        <span class="source">MIT Computational Thinking Research | Raspberry Pi Foundation 2025</span>
+      </div>
+      <div class="market-fact">
+        <strong>65% מתלמידי היסודי יעבדו במקצועות שלא קיימים היום</strong><br>
+        לא נוכל ללמד אותם כלים — צריך ללמד אותם לחשוב. זה בדיוק הבסיס שחשיבה מחשובית בונה.
+        <span class="source">McKinsey Global Institute | WEF Future of Jobs</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="stripe"></div>
+
+<!-- NZTECH SECTION -->
+<div id="nztech" style="background: var(--cream);">
+<div class="section">
+  <div class="nztech-header">
+    <div class="nztech-logo"><span>NZ</span>.TECH</div>
+    <div style="height: 32px; width: 1px; background: var(--border);"></div>
+    <div style="font-size: 14px; color: var(--text-muted); line-height: 1.5;">תוכנית עירונית | נס ציונה<br>חדשנות · יצירתיות · יוזמה</div>
+  </div>
+
+  <div class="section-label">הרצף החינוכי העירוני</div>
+  <h2 class="section-title">תוכנית NzTech —<br><span>שפה עירונית אחידה</span></h2>
+  <p class="section-intro">רצף חינוכי-טכנולוגי מגיל הגן ועד התיכון, המשלב חשיפה רחבה לכלל התלמידים עם מסלולי עומק ומצוינות. NzTech נועדה לייצר שפה עירונית אחידה המקנה אוריינות דיגיטלית, חשיבה מחשובית, AI ומיומנויות יזמות.</p>
+
+  <!-- VISION + 4 PRINCIPLES -->
+  <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:24px; margin-bottom:32px; align-items:start;">
+    <div style="background:var(--navy); border-radius:14px; padding:32px;">
+      <div style="font-size:12px; font-weight:700; letter-spacing:1px; color:var(--teal-lt); text-transform:uppercase; margin-bottom:14px;">החזון</div>
+      <p style="font-size:15px; color:rgba(255,255,255,0.85); line-height:1.85; margin-bottom:20px;">
+        לטפח בוגרים ובוגרות בעלי ערכים ומיומנויות שיאפשרו להם <strong style="color:var(--gold);">לעצב את זהותם, התפתחותם, חוסנם ויכולתם להיות מנהיגי העתיד</strong> — ולהבטיח להם יתרון משמעותי בהשתלבות באקדמיה, ביחידות הטכנולוגיות בצה"ל ובמוקדי החדשנות בתעשיית ההייטק הישראלית.
+      </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div style="background:rgba(255,255,255,0.06); border-radius:8px; padding:12px;">
+          <div style="font-size:12px; font-weight:700; color:var(--gold); margin-bottom:4px;">🏆 Excellence</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.5;">פלטפורמה להובלה והישגים טכנולוגיים — בגרות הייטק ומסלולי דגל</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); border-radius:8px; padding:12px;">
+          <div style="font-size:12px; font-weight:700; color:var(--teal-lt); margin-bottom:4px;">💡 Innovation</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.5;">שילוב טכנולוגיות עתידיות — AI, רובוטיקה — כחלק אינטגרלי</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); border-radius:8px; padding:12px;">
+          <div style="font-size:12px; font-weight:700; color:var(--orange); margin-bottom:4px;">🔀 Choice</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.5;">מגוון מסלולי תמחות ומגמות להתאמה אישית</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); border-radius:8px; padding:12px;">
+          <div style="font-size:12px; font-weight:700; color:var(--ltGrn, #48BB78); margin-bottom:4px;">🤝 Community</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.55); line-height:1.5;">יצירת אקו-סיסטם עירוני ושפה חינוכית אחידה</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIQUENESS LIST -->
+    <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); padding:28px;">
+      <div style="font-size:13px; font-weight:700; color:var(--teal); letter-spacing:0.5px; margin-bottom:16px;">מה מייחד את התוכנית</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:flex-start; padding:8px 12px; background:var(--ltGray, #F0F4F8); border-radius:8px; border-right:3px solid var(--teal);">
+          <div style="font-size:13px; color:var(--text); line-height:1.6;"><strong>כלל תלמידי שכבות ז'–ח'</strong> — לא רק למצוינים</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start; padding:8px 12px; background:var(--ltGray, #F0F4F8); border-radius:8px; border-right:3px solid var(--teal);">
+          <div style="font-size:13px; color:var(--text); line-height:1.6;"><strong>הובלה עירונית</strong> — הקצאת משאבים, הכשרת מורים</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start; padding:8px 12px; background:var(--ltGray, #F0F4F8); border-radius:8px; border-right:3px solid var(--orange);">
+          <div style="font-size:13px; color:var(--text); line-height:1.6;"><strong>PBL</strong> — תוכנית לימודים מבוססת תוצר ופיתוח עצמי</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start; padding:8px 12px; background:var(--ltGray, #F0F4F8); border-radius:8px; border-right:3px solid var(--orange);">
+          <div style="font-size:13px; color:var(--text); line-height:1.6;"><strong>קבוצות קטנות</strong> — ~20 תלמידים לקבוצה</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start; padding:8px 12px; background:var(--ltGray, #F0F4F8); border-radius:8px; border-right:3px solid var(--gold);">
+          <div style="font-size:13px; color:var(--text); line-height:1.6;"><strong>אג'יליות פדגוגית</strong> — התוכנית מתעדכנת כל הזמן</div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start; padding:8px 12px; background:var(--ltGray, #F0F4F8); border-radius:8px; border-right:3px solid var(--gold);">
+          <div style="font-size:13px; color:var(--text); line-height:1.6;"><strong>שביעות רצון גבוהה</strong> — תלמידים, צוות והורים</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOALS ROW -->
+  <div style="margin-bottom:28px;">
+    <div style="font-size:12px; font-weight:700; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase; margin-bottom:14px;">מטרות התוכנית</div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
+      <div style="background:var(--card-bg); border-radius:10px; border:1px solid var(--border); padding:16px; text-align:center;">
+        <div style="font-size:22px; margin-bottom:8px;">🇮🇱</div>
+        <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px;">ציוניות</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">חיזוק חוסן מדינת ישראל כמעצמת הייטק וסייבר</div>
+      </div>
+      <div style="background:var(--card-bg); border-radius:10px; border:1px solid var(--border); padding:16px; text-align:center;">
+        <div style="font-size:22px; margin-bottom:8px;">🏫</div>
+        <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px;">העצמה ארגונית</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">חיזוק המורים, בית הספר והרשות כמובילי שינוי</div>
+      </div>
+      <div style="background:var(--card-bg); border-radius:10px; border:1px solid var(--border); padding:16px; text-align:center;">
+        <div style="font-size:22px; margin-bottom:8px;">⚖️</div>
+        <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px;">צמצום פערים</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">פערי מגדר, פריפריה חברתית וגיאוגרפית, מבחני PISA</div>
+      </div>
+      <div style="background:var(--card-bg); border-radius:10px; border:1px solid var(--border); padding:16px; text-align:center;">
+        <div style="font-size:22px; margin-bottom:8px;">🧭</div>
+        <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px;">פדגוגיה מוטת עתיד</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">גלוקליות, פרסונליות, שיתופיות, ביטוי עצמי, למידה קונסטרוקטיבית</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEVELS -->
+  <div class="nztech-levels">
+    <div class="nztech-level">
+      <div class="nztech-level-head" style="background: var(--g2);">גני ילדים</div>
+      <ul class="nztech-level-items">
+        <li>גן מדעי-טכנולוגי</li>
+        <li>יסודות אוריינות דיגיטלית</li>
+        <li>חשיפה לטכנולוגיה בגיל הרך</li>
+      </ul>
+    </div>
+    <div class="nztech-level">
+      <div class="nztech-level-head" style="background: var(--g1);">יסודי</div>
+      <ul class="nztech-level-items">
+        <li>קוד קידס — כיתות ג'–ד'</li>
+        <li>Scratch ככשפה שלישית</li>
+        <li>שבוע הקוד העירוני</li>
+        <li>מייקרינג — חדרי יצירה</li>
+        <li>רובוטיקה FLL</li>
+      </ul>
+    </div>
+    <div class="nztech-level">
+      <div class="nztech-level-head" style="background: var(--g3);">חטיבת ביניים</div>
+      <ul class="nztech-level-items">
+        <li>קוד כשפה שלישית (Scratch)</li>
+        <li>AiMake — AI ומייקרינג</li>
+        <li>רובוטיקה FLL</li>
+        <li>מסלולי מצוינות</li>
+        <li>עידוד תלמידות למקצועות טכנולוגיים</li>
+      </ul>
+    </div>
+    <div class="nztech-level">
+      <div class="nztech-level-head" style="background: var(--g4);">תיכון</div>
+      <ul class="nztech-level-items">
+        <li>הנדסת תוכנה, AI, מדעי המחשב</li>
+        <li>פיזיקה — שוורץ-רייסמן</li>
+        <li>5 יח"ל מתמטיקה</li>
+        <li>רובוטיקה Demacia #5635</li>
+        <li>חשיפה ליחידות טכנולוגיות בצה"ל</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCRATCH DEMO PLACEHOLDER 3 -->
+  <div class="scratch-demo" style="margin-top:28px;">
+    <div class="scratch-demo-label">Scratch בכיתה — נס ציונה</div>
+    <h4>כאן יוצגו תוצרים מתלמידי נס ציונה — פרויקטים מבתי הספר בן גוריון, בן יהודה, גולדה, פארק המדע</h4>
+    <p>תוצרים מוכיחים שהגישה עובדת — לא רק בתיאוריה</p>
+  </div>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- RESULTS SECTION -->
+<div id="results" style="background: #fff;">
+<div class="section">
+  <div class="section-label">תוצאות נס ציונה</div>
+  <h2 class="section-title">הנתונים <span>מדברים</span></h2>
+
+  <div class="achievement-banner">
+    <div class="achievement-num-block">
+      <span class="achievement-num">23.1%</span>
+      <div class="achievement-num-sub">בגרות הייטק 2024</div>
+    </div>
+    <div class="achievement-divider"></div>
+    <div class="achievement-body">
+      <h3>נס ציונה — מובילה ארצית במדד בגרות הייטק</h3>
+      <p>פי 2+ מהממוצע הארצי (10.8%) | מקום 3 מבין ערים בגודל דומה בישראל<br>
+      עלייה עקבית מ-14.1% ב-2014 ל-23.1% ב-2024 — לאורך 10 שנים<br><br>
+      <em style="color: rgba(255,255,255,0.4); font-size: 13px;">מקור: דו"ח המצוינות של ישראל, מדד בגרות הייטק 2024</em></p>
+    </div>
+    <div class="achievement-badges">
+      <div class="achievement-badge">#3 בין ערים גדולות דומות</div>
+      <div class="achievement-badge">פי 2+ מהממוצע הארצי</div>
+      <div class="achievement-badge">עלייה עקבית 10 שנים</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- STUDENT VOICES -->
+<div style="background: var(--cream);">
+<div class="section">
+  <div class="section-label">קול הלומדים</div>
+  <h2 class="section-title">מה <span>הילדים</span> אומרים</h2>
+  <p class="section-intro">הפידבק מהשטח — ישיר, אמיתי, מהתלמידים עצמם.</p>
+
+  <div class="voices-grid">
+    <div class="voice-card">
+      <div class="voice-text">שעשיתי את הפרויקט ולא האמנתי שאצליח</div>
+      <div class="voice-meta">תלמידה, כיתה ז' — תחושת מסוגלות</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-text">מהחידושים ומזה שעשינו מעבר מלשבת מול הלוח</div>
+      <div class="voice-meta">תלמיד, כיתה ח' — למידה חווייתית</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-text">בניגוד לשיעורים אחרים, בשיעור הזה היה חשוב יותר היצירתיות ולא המידע שצברנו</div>
+      <div class="voice-meta">תלמידה — AiMake, חטיבת ביניים</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-text">שאני ילד גדול</div>
+      <div class="voice-meta">תלמיד, כיתה ג' — תחושת אוטונומיה</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-text">מז שאני יכולה להביא לידי ביטוי את עצמי באמצעות Scratch</div>
+      <div class="voice-meta">תלמידה — ביטוי עצמי ויצירתיות</div>
+    </div>
+    <div class="voice-card">
+      <div class="voice-text">שהצלחתי להתמודד עם האתגרים — ללמוד להיכשל</div>
+      <div class="voice-meta">תלמיד — חוסן לימודי ואומץ</div>
+    </div>
+  </div>
+
+  <div class="sat-row">
+    <div class="sat-card">
+      <span class="sat-pct">92%</span>
+      <div class="sat-label">שביעות רצון<br>מעבודת צוות</div>
+    </div>
+    <div class="sat-card">
+      <span class="sat-pct">93%</span>
+      <div class="sat-label">שביעות רצון<br>מלמידה עצמאית</div>
+    </div>
+    <div class="sat-card">
+      <span class="sat-pct">83%</span>
+      <div class="sat-label">שביעות רצון<br>מכלים טכנולוגיים</div>
+    </div>
+    <div class="sat-card">
+      <span class="sat-pct">57%</span>
+      <div class="sat-label">רצון להמשיך<br>בתכנות (+7% משנה קודמת)</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- WHAT WE ARE CHANGING -->
+<div style="background: var(--cream);">
+<div class="section">
+  <div class="section-label">מה אנחנו משנים</div>
+  <h2 class="section-title">השדרוג שאנחנו עושים —<br><span>בלי לשבור את מה שעובד</span></h2>
+  <p class="section-intro">
+    התוכנית הקיימת עובדת. הפידבק חיובי, הנתונים מוכיחים. לא מחליפים אותה — משדרגים אותה בחוכמה.
+  </p>
+
+  <!-- RATIONALE HERO BOX -->
+  <div style="background: var(--navy); border-radius: 16px; padding: 40px; margin-bottom: 32px; position: relative; overflow: hidden;">
+    <div style="position:absolute; top:-60px; left:-60px; width:220px; height:220px; background:radial-gradient(circle, rgba(10,140,140,0.18) 0%, transparent 70%); pointer-events:none;"></div>
+    <div style="position:absolute; bottom:-40px; right:-40px; width:180px; height:180px; background:radial-gradient(circle, rgba(240,165,0,0.12) 0%, transparent 70%); pointer-events:none;"></div>
+    <div style="position:relative;">
+      <div style="font-size:13px; font-weight:700; letter-spacing:1.2px; color:var(--teal-lt); text-transform:uppercase; margin-bottom:16px;">הרציונאל</div>
+      <p style="font-size:18px; color:#fff; line-height:1.85; max-width:780px; font-weight:500;">
+        כניסת ה-AI לעולמינו לא מחייבת לזרוק את מה שלמדנו — היא מחייבת להבין <span style="color:var(--gold);">למה הבסיס הזה חשוב יותר מתמיד.</span>
+      </p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.6); line-height:1.85; max-width:780px; margin-top:16px;">
+        ילד שלמד לפרק בעיה, לזהות דפוסים ולחשוב אלגוריתמית — לא רק כותב קוד טוב יותר.
+        הוא מוכן לעולם ה-AI. הוא יידע לנחות אותו, להעריך את תפוקותיו ולזהות את כשלונותיו.
+        זו בדיוק התשתית שאנחנו רוצים לבנות — ובלי להמתין לחטיבה.
+      </p>
+    </div>
+  </div>
+
+  <!-- THREE PRINCIPLES -->
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:40px;">
+
+    <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--teal); padding:20px 24px;">
+        <div style="font-size:28px; margin-bottom:8px;">📌</div>
+        <div style="font-size:16px; font-weight:700; color:#fff; line-height:1.4;">לא שעות נוספות —<br>רגעים חכמים</div>
+      </div>
+      <div style="padding:22px 24px;">
+        <p style="font-size:14px; color:var(--text-muted); line-height:1.85;">
+          אין תוספת של שעות לסילבוס. במינון מדוד, ברגעים הנכונים בתוך מה שכבר לומדים, מוסיפים שיחה — לא שיעור. שאלה אחת שמחברת את קוד ה-Scratch שהילד זה עתה כתב לאיך AI חושב.
+        </p>
+      </div>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--orange); padding:20px 24px;">
+        <div style="font-size:28px; margin-bottom:8px;">🧱</div>
+        <div style="font-size:16px; font-weight:700; color:#fff; line-height:1.4;">תשתית מנטלית —<br>לא כשירות AI</div>
+      </div>
+      <div style="padding:22px 24px;">
+        <p style="font-size:14px; color:var(--text-muted); line-height:1.85;">
+          עד גיל 13 לא מלמדים כלי AI. אבל בהחלט ניתן לבנות הבנה: AI עובד על אלגוריתמים, AI טועה כי יש סיבה לוגית, AI יוצר — אבל מישהו חייב להיות הארכיטקט. זו תשתית שמחכה לרגע שיתאפשר.
+        </p>
+      </div>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--gold); padding:20px 24px;">
+        <div style="font-size:28px; margin-bottom:8px;">🚀</div>
+        <div style="font-size:16px; font-weight:700; color:var(--navy); line-height:1.4;">גשר לחטיבה —<br>לא סוף הדרך</div>
+      </div>
+      <div style="padding:22px 24px;">
+        <p style="font-size:14px; color:var(--text-muted); line-height:1.85;">
+          כשהילד יעבור לחטיבה ויפגוש את AiMake — הוא לא יגיע ריק. הוא יגיע עם בסיס מנטלי שיאפשר לו לספוג כשירות AI אמיתית הרבה יותר מהר ועמוק יותר. התוכנית בסיסי היא לא נקודת סיום — היא נקודת הכנה.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT STAYS / WHAT CHANGES -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px;">
+
+    <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:#2E7D32; padding:14px 24px; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:18px;">✓</span>
+        <span style="font-size:15px; font-weight:700; color:#fff;">מה נשמר בדיוק כפי שהוא</span>
+      </div>
+      <div style="padding:20px 24px; display:flex; flex-direction:column; gap:10px;">
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FFF4; border-radius:8px; border-right:3px solid #48BB78; line-height:1.6;">כל הסילבוס הקיים — 60 השעות, הפרויקטים, מבני הבקרה</div>
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FFF4; border-radius:8px; border-right:3px solid #48BB78; line-height:1.6;">עיקרון הלמידה החווייתית — יצירה, ניסוי, כישלון ותיקון</div>
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FFF4; border-radius:8px; border-right:3px solid #48BB78; line-height:1.6;">הגישה ההדרגתית — מהפשוט למורכב, מאלגוריתם למשחק</div>
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FFF4; border-radius:8px; border-right:3px solid #48BB78; line-height:1.6;">מרכזיות הביטוי האישי — כל תלמיד בונה את הפרויקט שלו</div>
+      </div>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:14px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--teal); padding:14px 24px; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:18px;">→</span>
+        <span style="font-size:15px; font-weight:700; color:#fff;">מה מתווסף — בלי לשבש</span>
+      </div>
+      <div style="padding:20px 24px; display:flex; flex-direction:column; gap:10px;">
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FAFA; border-radius:8px; border-right:3px solid var(--teal-lt); line-height:1.6;">חיבור מפורש בין עקרונות התכנות לאופן שבו AI חושב ופועל</div>
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FAFA; border-radius:8px; border-right:3px solid var(--teal-lt); line-height:1.6;">שיחות מכוונות: מה AI יכול, מה הוא לא יכול, ולמה זה חשוב</div>
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FAFA; border-radius:8px; border-right:3px solid var(--teal-lt); line-height:1.6;">פיתוח תודעה ביקורתית — הילד כמעריך, לא כמשתמש פסיבי</div>
+        <div style="font-size:13.5px; color:var(--text); padding:10px 14px; background:#F0FAFA; border-radius:8px; border-right:3px solid var(--teal-lt); line-height:1.6;">הכנה מנטלית ל-AiMake בחטיבה — גשר, לא קיצור דרך</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div style="background: linear-gradient(135deg, rgba(10,140,140,0.08) 0%, rgba(240,165,0,0.06) 100%); border:1px solid rgba(10,140,140,0.2); border-radius:14px; padding:28px 36px; text-align:center;">
+    <p style="font-size:17px; font-weight:700; color:var(--navy); line-height:1.75; margin-bottom:8px;">
+      ילד שמגיע לחטיבה עם בסיס חשיבה מחשובית חזק — ייספוג כשירות AI פי שלושה מהר יותר.
+    </p>
+    <p style="font-size:14px; color:var(--text-muted); line-height:1.8; max-width:640px; margin:0 auto;">
+      זו לא הבטחה — זו השקעה. לא בכלי, לא בשפה, לא בטכנולוגיה שתשתנה עוד שנתיים.
+      בכושר חשיבה שישרת את הילד לאורך כל החיים.
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- CODE AS THIRD LANGUAGE SECTION -->
+<div class="sep"></div>
+
+<div style="background:#fff;">
+<div class="section">
+  <div class="section-label">התוכנית הנוכחית</div>
+  <h2 class="section-title">קוד כשפה שלישית —<br><span>איך נראית התוכנית בפועל</span></h2>
+  <p class="section-intro">לפני שמדברים על מה עומד להשתנות — חשוב להבין מה עובד כבר היום. זו התוכנית שעליה בנוי כל הדף הזה.</p>
+
+  <!-- STRUCTURE OVERVIEW -->
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px;">
+    <div style="background:var(--navy); border-radius:12px; padding:24px; text-align:center;">
+      <div style="font-size:32px; font-weight:900; color:var(--gold); line-height:1; margin-bottom:8px;">ז'</div>
+      <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">שכבת לימוד</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.5);">כיתה ז' בלבד</div>
+    </div>
+    <div style="background:var(--navy); border-radius:12px; padding:24px; text-align:center;">
+      <div style="font-size:32px; font-weight:900; color:var(--teal-lt); line-height:1; margin-bottom:8px;">2</div>
+      <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">שעות שבועיות</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.5);">2 ש"ש לאורך מחצית</div>
+    </div>
+    <div style="background:var(--navy); border-radius:12px; padding:24px; text-align:center;">
+      <div style="font-size:32px; font-weight:900; color:var(--orange); line-height:1; margin-bottom:8px;">½</div>
+      <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">חצי כיתה</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.5);">~20 תלמידים בקבוצה</div>
+    </div>
+    <div style="background:var(--navy); border-radius:12px; padding:24px; text-align:center;">
+      <div style="font-size:32px; font-weight:900; color:var(--ltGrn, #48BB78); line-height:1; margin-bottom:8px;">60</div>
+      <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:4px;">שעות לימוד</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.5);">סה"כ לאורך המחצית</div>
+    </div>
+  </div>
+
+  <!-- GOALS -->
+  <div style="background:linear-gradient(135deg, rgba(10,140,140,0.07) 0%, rgba(240,165,0,0.05) 100%); border:1px solid rgba(10,140,140,0.18); border-radius:14px; padding:28px 32px; margin-bottom:32px;">
+    <div style="font-size:13px; font-weight:700; color:var(--teal); letter-spacing:0.5px; margin-bottom:16px;">מטרות לימודיות</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="width:6px; height:6px; background:var(--teal); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+        <div style="font-size:13.5px; color:var(--text); line-height:1.7;">היכרות עם מדעי המחשב ופתרון בעיות באמצעות <strong>חשיבה אלגוריתמית</strong></div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="width:6px; height:6px; background:var(--teal); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+        <div style="font-size:13.5px; color:var(--text); line-height:1.7;">הבנת תהליכי פתרון בעיות: הבנת הצורך → תכנון → יישום → בדיקה → שיתוף</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="width:6px; height:6px; background:var(--orange); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+        <div style="font-size:13.5px; color:var(--text); line-height:1.7;">שילוב בין-תחומי — מדעי המחשב ככלי בתחומי ידע אחרים</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="width:6px; height:6px; background:var(--orange); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+        <div style="font-size:13.5px; color:var(--text); line-height:1.7;">פיתוח כישורי רפלקציה וחשיבה ביקורתית</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="width:6px; height:6px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+        <div style="font-size:13.5px; color:var(--text); line-height:1.7;">פיתוח כישורי <strong>עבודת צוות</strong> לפתרון בעיות מורכבות</div>
+      </div>
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <div style="width:6px; height:6px; background:var(--gold); border-radius:50%; flex-shrink:0; margin-top:7px;"></div>
+        <div style="font-size:13.5px; color:var(--text); line-height:1.7;">עמידה ביעדים ולוחות זמנים — <strong>פרויקט גמר כפרויקט הייטק אמיתי</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 PILLARS -->
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px;">
+    <div style="background:var(--card-bg); border-radius:12px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--g1); padding:18px 22px;">
+        <div style="font-size:22px; margin-bottom:8px;">🧠</div>
+        <div style="font-size:15px; font-weight:700; color:#fff; line-height:1.4;">חשיבה מחשובית<br>ופתרון בעיות</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.6); margin-top:4px;">(עקרונות ליבה)</div>
+      </div>
+      <div style="padding:18px 22px; font-size:13px; color:var(--text-muted); line-height:1.75;">
+        למידה והבנה של הפשטה, ניהול רמות מהפשוט לעקר. פיתוח פתרונות אלגוריתמיים לבעיות מורכבות. שימוש ב-Scratch כשער כניסה ויזואלי לעולם זה.
+      </div>
+    </div>
+    <div style="background:var(--card-bg); border-radius:12px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--orange); padding:18px 22px;">
+        <div style="font-size:22px; margin-bottom:8px;">💡</div>
+        <div style="font-size:15px; font-weight:700; color:#fff; line-height:1.4;">יזמות וחשיבה<br>פרויקטלית</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.6); margin-top:4px;">(מרעיון לביצוע)</div>
+      </div>
+      <div style="padding:18px 22px; font-size:13px; color:var(--text-muted); line-height:1.75;">
+        פיתוח חשיבה יזמית לניהול הדמיוניות. יישום חשיבה פרויקטלית לניהול ובניית מינימים. בניית MVP באמצעות פתרונות Scratch ואמצעים דיגיטליים.
+      </div>
+    </div>
+    <div style="background:var(--card-bg); border-radius:12px; border:1px solid var(--border); overflow:hidden;">
+      <div style="background:var(--g2); padding:18px 22px;">
+        <div style="font-size:22px; margin-bottom:8px;">🤝</div>
+        <div style="font-size:15px; font-weight:700; color:#fff; line-height:1.4;">מימוש ועבודת<br>צוות</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.6); margin-top:4px;">(מיומנויות חברתיות)</div>
+      </div>
+      <div style="padding:18px 22px; font-size:13px; color:var(--text-muted); line-height:1.75;">
+        עבודת צוות בינתחומיים לפתרון אתגרים. פיתוח מיומנויות תקשורת והצגת פרויקטים. עידוד למידה עצמית ורציפה בעולם טכנולוגי משתנה.
+      </div>
+    </div>
+  </div>
+
+  <!-- PEDAGOGICAL APPROACH -->
+  <div style="background:var(--navy); border-radius:16px; padding:36px; margin-bottom:28px;">
+    <div style="font-size:13px; font-weight:700; letter-spacing:1px; color:var(--teal-lt); text-transform:uppercase; margin-bottom:20px;">הרעיון הפדגוגי — הספירלה היצירתית של רזניק</div>
+
+    <div style="display:grid; grid-template-columns:1fr 1.8fr; gap:28px; align-items:start;">
+      <!-- Spiral visual -->
+      <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:24px; text-align:center;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:16px;">
+          <div style="background:rgba(10,140,140,0.3); border:1px solid var(--teal); border-radius:100px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--teal-lt);">Imagine דמיין</div>
+          <div style="background:rgba(240,165,0,0.2); border:1px solid var(--gold); border-radius:100px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--gold);">Create צור</div>
+          <div style="background:rgba(232,98,42,0.2); border:1px solid var(--orange); border-radius:100px; padding:6px 14px; font-size:12px; font-weight:700; color:var(--orange);">Play הפעל</div>
+          <div style="background:rgba(21,101,192,0.3); border:1px solid #5B9BD5; border-radius:100px; padding:6px 14px; font-size:12px; font-weight:700; color:#90C8F0;">Share שתף</div>
+          <div style="background:rgba(99,102,241,0.2); border:1px solid #818CF8; border-radius:100px; padding:6px 14px; font-size:12px; font-weight:700; color:#A5B4FC;">Reflect שקף</div>
+        </div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); line-height:1.6;">מחזור מתמיד שמעמיק<br>בכל סיבוב — Image by Mitchel Resnick</div>
+      </div>
+
+      <!-- Explanation -->
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:14px 18px;">
+          <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:5px;">🏗️ קונסטרוקציוניזם — Learning by Making</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.55); line-height:1.7;">הכיתה בנויה כך שרוב הזמן הוא מעשי. הסברים קצרים בתחילת שיעור, ואז התלמידים יוצרים. ילדים לא סופגים ידע — הם בונים אותו תוך כדי יצירה שניתן לשתף עם אחרים.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:14px 18px;">
+          <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:5px;">🎯 התאמה לכיתה הטרוגנית</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.55); line-height:1.7;">קצב אישי לכל תלמיד. בחירת קונטקסט (תחום עניין) אישי. עזרים דיגיטליים מגוונים המאפשרים חקר עצמאי ופיתוח יכולות.</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.07); padding:14px 18px;">
+          <div style="font-size:13px; font-weight:700; color:#fff; margin-bottom:5px;">🚀 פרויקט גמר כמנוע</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.55); line-height:1.7;">בנוי כפרויקט תוכנה אמיתי בחברת הייטק — עם אבני דרך, לוחות זמנים ומשוב. התלמיד חווה מה זה לעבוד בצוות לקראת מטרה מוגדרת.</div>
+        </div>
+        <div style="background:rgba(10,140,140,0.1); border-radius:10px; border:1px solid rgba(10,140,140,0.25); padding:14px 18px;">
+          <div style="font-size:13px; font-weight:700; color:var(--teal-lt); margin-bottom:5px;">⚡ אג'יליות פדגוגית</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.55); line-height:1.7;">התוכנית מתעדכנת כל הזמן בהתאם למציאות המשתנה. מה שלמדנו על AI בשנה האחרונה — כבר מוטמע בתוכנית הבאה.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<div class="sep"></div>
+
+<!-- CONCLUSIONS -->
+<div style="background: #fff;">
+<div class="section">
+  <div class="section-label">סיכום ומסקנות</div>
+  <h2 class="section-title">אז מה עושים <span>מחר בבוקר?</span></h2>
+  <p class="section-intro">לא תיאוריה. המלצות מעשיות לניהול בית הספר.</p>
+
+  <div class="conclusions">
+    <div class="conclusion-card">
+      <div class="conclusion-num">01</div>
+      <div>
+        <div class="conclusion-title">להמשיך וללמד חשיבה מחשובית — היא הבסיס</div>
+        <div class="conclusion-body">הקונצנזוס המדעי ברור: חשיבה מחשובית רלוונטית יותר מאי פעם. לא ניתן להפעיל AI בחוכמה בלי להבין מה מנסים לבנות. המנוע השתנה — הארכיטקט עדיין חייב להיות אדם.</div>
+      </div>
+    </div>
+
+    <div class="conclusion-card">
+      <div class="conclusion-num">02</div>
+      <div>
+        <div class="conclusion-title">התוכנית מצליחה — לשמר ולחזק</div>
+        <div class="conclusion-body">פידבק חיובי, שביעות רצון גבוהה, נתוני בגרות הייטק מרשימים. נס ציונה מוכיחה שכאשר רשות מקומית מציבה יעד ברור ומקצה משאבים — ניתן לשנות מציאות. אין סיבה לעצור תוכנית שעובדת.</div>
+      </div>
+    </div>
+
+    <div class="conclusion-card">
+      <div class="conclusion-num">03</div>
+      <div>
+        <div class="conclusion-title">לעדכן בהתמדה ולשלב הבנת עולם ה-AI</div>
+        <div class="conclusion-body">השנה נעדכן את התוכנית: נשלב אלמנטים להבנת AI, שימוש ביקורתי בכלים ואוריינות דיגיטלית — לצד, לא במקום, בסיס הקוד. זה לא תחרות: שני השרירים נדרשים.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- UPDATE SECTION -->
+<div style="background: #fff; padding: 80px 24px;">
+<div style="max-width: 1100px; margin: 0 auto;">
+
+  <div style="display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#0A8C8C; margin-bottom:12px;">
+    <span style="width:20px; height:2px; background:#0A8C8C; display:inline-block;"></span>
+    השלב הבא
+  </div>
+
+  <h2 style="font-family:'Heebo',sans-serif; font-size:clamp(26px,4vw,40px); font-weight:700; color:#0A1628; line-height:1.25; margin-bottom:16px;">
+    מה אנחנו משנים — ולמה <span style="color:#0A8C8C;">עכשיו</span>
+  </h2>
+  <p style="font-size:17px; color:#5A6478; max-width:640px; line-height:1.8; margin-bottom:52px;">
+    הבסיס שבנינו חזק. חשיבה מחשובית ועקרונות תכנות — הם כאן ונשארים. השינוי שאנחנו עושים לא שובר אותם. הוא בונה עליהם שכבה נוספת, בזמן הנכון, בדרך הנכונה.
+  </p>
+
+  <!-- TWO-COL: CONTEXT + PRINCIPLE -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px;">
+
+    <div style="background:#F8F4EE; border-radius:14px; padding:32px;">
+      <div style="font-size:13px; font-weight:700; color:#0A8C8C; letter-spacing:0.5px; margin-bottom:14px; text-transform:uppercase;">הקשר</div>
+      <h3 style="font-size:19px; font-weight:700; color:#0A1628; margin-bottom:14px; line-height:1.4;">התוכנית יורדת מחטיבת הביניים ליסודי</h3>
+      <p style="font-size:14px; color:#5A6478; line-height:1.85;">
+        עד כה לימדנו את תוכנית Scratch בחטיבת הביניים. השנה אנחנו מורידים אותה ליסודי — שלב קריטי יותר, מוקדם יותר. הבסיס מונח קודם, ולכן השפעתו גדולה יותר.
+        <br><br>
+        במקביל, עולם ה-AI נכנס לחיי כולנו — כולל ילדים. נדרש להתייחס לכך — אבל בחוכמה ובאחריות.
+      </p>
+    </div>
+
+    <div style="background:#0A1628; border-radius:14px; padding:32px;">
+      <div style="font-size:13px; font-weight:700; color:#14B8B8; letter-spacing:0.5px; margin-bottom:14px; text-transform:uppercase;">העיקרון המנחה</div>
+      <h3 style="font-size:19px; font-weight:700; color:#fff; margin-bottom:14px; line-height:1.4;">לא שעות נוספות — תשתית עתידית</h3>
+      <p style="font-size:14px; color:rgba(255,255,255,0.6); line-height:1.85;">
+        אנחנו לא מוסיפים שעות. לא מחליפים תכנים. מה שאנחנו עושים הוא לשלב, בתוך הסילבוס הקיים, רגעי למידה שמחברים בין מה שהילד עושה כבר — לבין העולם שהוא נכנס אליו.
+        <br><br>
+        המטרה: שכשהילד יפגוש AI לראשונה — הוא לא יגיע ריק. הוא יגיע עם מסגרת חשיבה.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- CONSTRAINT BOX -->
+  <div style="background:linear-gradient(135deg,rgba(10,140,140,0.06) 0%,rgba(240,165,0,0.05) 100%); border:1px solid rgba(10,140,140,0.18); border-radius:14px; padding:28px 36px; margin-bottom:32px; display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start;">
+    <div style="width:44px; height:44px; background:rgba(10,140,140,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0;">⚖️</div>
+    <div>
+      <div style="font-size:15px; font-weight:700; color:#0A1628; margin-bottom:8px;">גבולות ברורים — ובתוכם: הזדמנות</div>
+      <p style="font-size:14px; color:#5A6478; line-height:1.85; margin:0;">
+        בגיל היסודי, ההנחיות הפדגוגיות ברורות: אין שימוש ישיר בכלי AI, אין כתיבת פרומפטים, אין אינטראקציה עם מערכות שפה גדולות.
+        אבל בתוך הגבולות האלה יש מרחב עצום: ניתן לדון ב<strong style="color:#0A1628;">מה זה AI</strong>, ב<strong style="color:#0A1628;">איך הוא חושב</strong>, ב<strong style="color:#0A1628;">למה הוא טועה</strong> ובשאלה <strong style="color:#0A1628;">מה אדם יכול שמכונה לא יכולה</strong>.
+        זו לא הוראת AI — זו בניית תודעה ביקורתית שתאפשר בהמשך שימוש מושכל ובטוח.
+      </p>
+    </div>
+  </div>
+
+  <!-- 4 PILLARS OF CHANGE -->
+  <div style="font-size:12px; font-weight:700; letter-spacing:1.2px; color:#5A6478; text-transform:uppercase; margin-bottom:16px;">ארבעה עקרונות לשילוב בתוכנית</div>
+
+  <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:48px;">
+
+    <div style="background:#fff; border:1px solid rgba(10,140,140,0.15); border-radius:12px; padding:24px; border-top:3px solid #0A8C8C;">
+      <div style="font-size:22px; margin-bottom:10px;">🔗</div>
+      <div style="font-size:15px; font-weight:700; color:#0A1628; margin-bottom:8px;">לחבר — לא להוסיף</div>
+      <p style="font-size:13px; color:#5A6478; line-height:1.8; margin:0;">
+        כל רגע לימודי על AI מחובר לנושא שהילד לומד באותו הרגע בסילבוס. לומדים אלגוריתמיקה? מדברים על איך AI מקבל החלטות. לומדים Debugging? מדברים על למה AI טועה ומי אחראי. החיבור הוא הפדגוגיה.
+      </p>
+    </div>
+
+    <div style="background:#fff; border:1px solid rgba(10,140,140,0.15); border-radius:12px; padding:24px; border-top:3px solid #F0A500;">
+      <div style="font-size:22px; margin-bottom:10px;">🌱</div>
+      <div style="font-size:15px; font-weight:700; color:#0A1628; margin-bottom:8px;">לבסס — לא להאיץ</div>
+      <p style="font-size:13px; color:#5A6478; line-height:1.8; margin:0;">
+        המטרה אינה ילדים שיודעים לדבר על AI — אלא ילדים שמבינים מה עומד מאחוריו. מי שבנה משחק ב-Scratch ונתקל בבאג — מבין אינטואיטיבית שגם AI יכול לטעות, ולמה. הבסיס הוא שם. אנחנו מחזקים אותו.
+      </p>
+    </div>
+
+    <div style="background:#fff; border:1px solid rgba(10,140,140,0.15); border-radius:12px; padding:24px; border-top:3px solid #E8622A;">
+      <div style="font-size:22px; margin-bottom:10px;">🧭</div>
+      <div style="font-size:15px; font-weight:700; color:#0A1628; margin-bottom:8px;">לכוון — לא לנתב</div>
+      <p style="font-size:13px; color:#5A6478; line-height:1.8; margin:0;">
+        אנחנו לא מכוונים ילדים להשתמש ב-AI — אנחנו מכוונים אותם לחשוב עליו. מה הוא יכול? מה הוא לא יכול? מה ההבדל בין מי שמבקש ממנו לבין מי שמנחה אותו? שאלות אלה אינן דורשות מחשב — הן דורשות מחשבה.
+      </p>
+    </div>
+
+    <div style="background:#fff; border:1px solid rgba(10,140,140,0.15); border-radius:12px; padding:24px; border-top:3px solid #1565C0;">
+      <div style="font-size:22px; margin-bottom:10px;">🏗️</div>
+      <div style="font-size:15px; font-weight:700; color:#0A1628; margin-bottom:8px;">לבנות רצף — לא אירוע</div>
+      <p style="font-size:13px; color:#5A6478; line-height:1.8; margin:0;">
+        מה שיסודי בונה — חטיבה ממשיכה. הילד שיגיע לתוכנית AiMake בחטיבה לא יתחיל מאפס. הוא יגיע עם שאלות, עם ספקות, עם הבנה. זה רצף מכוון — לא שני תוכניות נפרדות.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM STATEMENT -->
+  <div style="background:#0A1628; border-radius:16px; padding:40px 48px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center;">
+    <div>
+      <div style="font-size:13px; font-weight:700; color:#14B8B8; letter-spacing:0.5px; margin-bottom:12px; text-transform:uppercase;">הכיוון שלנו לשנת 2026</div>
+      <h3 style="font-size:22px; font-weight:700; color:#fff; line-height:1.4; margin-bottom:12px;">
+        Scratch מלמד לחשוב.<br>
+        החשיבה הזו תלמד אותם לחיות עם AI.
+      </h3>
+      <p style="font-size:14px; color:rgba(255,255,255,0.55); line-height:1.8; margin:0;">
+        אנחנו לא ממהרים. אנחנו בונים. הילד שיסיים את תוכנית הYסודי שלנו לא יידע להשתמש ב-AI — אבל הוא יידע לחשוב על AI. וזה, בסופו של דבר, הכלי החשוב יותר.
+      </p>
+    </div>
+    <div style="text-align:center; flex-shrink:0;">
+      <div style="font-family:'Heebo',sans-serif; font-size:56px; font-weight:900; color:#F0A500; line-height:1;">2026</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.4); margin-top:4px;">עדכון תוכנית</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+<!-- CLOSING -->
+<div class="closing">
+  <div style="max-width: 1100px; margin: 0 auto; position: relative;">
+    <h2 class="closing-title">
+      בעולם שבו AI עושה הכל —<br>
+      מי שמבין <span>איך</span> הוא עובד<br>
+      מחזיק בכוח האמיתי
+    </h2>
+    <p class="closing-sub">
+      הילדים שנלמד היום לחשוב — הם שיעצבו את ה-AI של מחר.<br>
+      לא לצרוך אותו. לבנות אותו.
+    </p>
+
+    <div class="closing-quote">
+      "האתגר שלנו אינו ללמד איך לכתוב לולאה — אלא <strong>איך לחשוב.</strong>"<br>
+      <span style="font-size: 14px; color: rgba(20,184,184,0.6); margin-top: 12px; display: block;">תוכנית NzTech | עיריית נס ציונה 2026</span><span style="font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 8px; display: block;">נכתב ע"י רמי שקד — מומחה לחדשנות וחינוך טכנולוגי</span>
+    </div>
+  </div>
+</div>
+
+<footer style="background: #060e1c; padding: 24px; text-align: center;">
+  <p style="font-size: 12px; color: rgba(255,255,255,0.2);">NZ.TECH · חדשנות, יצירתיות, יוזמה · עיריית נס ציונה · 2026</p>
+</footer>
+
+</body>
+</html>
+
+<div class="sep"></div>
+
+
+
+
+</body>
+</html>
