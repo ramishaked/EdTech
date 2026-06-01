@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>קול קורא: הצטרפות לתוכנית BYOD בנס ציונה - תשפ"ז</title>
+    <!-- Tailwind CSS for rapid & clean utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Heebo with multiple weights for premium Hebrew typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Heebo', 'sans-serif'],
+                    },
+                    colors: {
+                        nzBlue: {
+                            50: '#f0f5fa',
+                            100: '#e1ecf7',
+                            200: '#bcd4ee',
+                            500: '#1d528f', 
+                            900: '#0e2b4d', // Deep official municipal blue
+                        },
+                        nzOrange: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f37021', // Ness Ziona nostalgic citrus orange
+                            600: '#ea580c',
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 30px -10px rgba(14, 43, 77, 0.08), 0 1px 3px rgba(14, 43, 77, 0.02)',
+                        'premium-hover': '0 20px 40px -15px rgba(14, 43, 77, 0.12), 0 1px 5px rgba(14, 43, 77, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions for interactive components */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+        }
+        .accordion-open .accordion-content {
+            max-height: 2500px; /* High threshold for complex nested content */
+            padding-bottom: 1.5rem;
+        }
+        .accordion-open .accordion-header {
+            background-color: #f0f5fa;
+        }
+        .accordion-open .accordion-icon {
+            transform: rotate(180deg);
+            color: #f37021;
+        }
+    </style>
+</head>
+<body class="bg-[#f7fafc] text-slate-800 font-sans min-h-screen relative overflow-x-hidden">
+
+    <!-- Top Branding Stripe (Municipal identity) -->
+    <div class="h-2.5 w-full bg-gradient-to-r from-nzBlue-900 via-nzOrange-500 to-nzBlue-500"></div>
+
+    <!-- Background Decorative Bubbles -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-nzBlue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+    <div class="absolute top-1/3 right-0 w-96 h-96 bg-nzOrange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-25 translate-x-1/3 pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header Section -->
+        <header class="flex flex-col items-start text-right mb-10 w-full">
+            <!-- Municipal Logo & Brand Area - Simple & Official stacked layout -->
+            <div class="flex flex-col items-start mb-6">
+                <img src="https://www.nzc.org.il/content/images/logo.png" alt="לוגו עיריית נס ציונה" class="h-16 w-auto object-contain" onerror="this.onerror=null; this.src='logo-NES-ZIONA.png';">
+                <div class="text-right mt-1.5 pr-1">
+                    <span class="text-xs text-slate-500 font-bold block">אגף החינוך</span>
+                </div>
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl font-black text-nzBlue-900 tracking-tight mb-4 w-full">
+                קול קורא: הצטרפות לתוכנית <span class="text-nzOrange-500">BYOD</span> בנס ציונה - תשפ"ז
+            </h1>
+            
+            <!-- Alvin Toffler Quote Section -->
+            <div class="max-w-2xl my-4 px-6 py-3 border-r-4 border-nzOrange-500 bg-nzOrange-50/50 rounded-l-xl text-right">
+                <p class="text-sm sm:text-base text-slate-700 italic font-medium leading-relaxed">
+                    "האנלפבתים של המאה ה-21 לא יהיו אלה שאינם יודעים לקרוא ולכתוב, אלא אלה שאינם מסוגלים ללמוד, לשכוח את מה שלמדו, וללמוד מחדש"
+                </p>
+                <span class="text-xs text-nzBlue-900 font-bold block mt-1">&mdash; אלווין טופלר</span>
+            </div>
+        </header>
+
+        <!-- Welcome Message & Headline Hero Card -->
+        <section class="bg-white rounded-3xl shadow-premium border border-slate-100/80 overflow-hidden mb-8 transform transition duration-300 hover:shadow-premium-hover">
+            <div class="p-6 sm:p-10">
+                
+                <!-- Expanded Letter Body -->
+                <div class="space-y-5 text-slate-600 leading-relaxed text-base">
+                    <p class="font-black text-nzBlue-900 text-xl mb-2">מנהלת ומנהל יקרים,</p>
+                    <p>
+                        העולם סביבנו משתנה בקצב מסחרר, מערכת החינוך עומדת בפני אתגר מתמיד להכין את הלומדים לחייהם הבוגרים באופן שיאפשר להם לשגשג כפרטים בעולם משתנה. העולם הדיגיטלי הפך לחלק בלתי נפרד מחיינו, ותפקידנו הוא לרתום אותו לטובת תהליכי למידה משמעותיים. תוכנית <strong class="text-nzBlue-900 font-bold">Bring Your Own Device (BYOD)</strong>, המאפשרת לתלמידים להביא את המחשב האישי לבית הספר, היא הזדמנות פרקטית לעיצוב מחדש של חווית הלמידה ולהובלת מהלך פדגוגי עמוק בבית הספר המאפשר לנו לטפח את דמות הבוגר שאנו שואפים אליה – בוגר בעל ידע, ערכים, ומיומנויות המאה ה-21. זהו אינו פרויקט טכנולוגי, מדובר במהלך פורץ דרך וחדשני המתחבר באופן ישיר למודל החינוך העירוני, <span class="font-bold text-nzBlue-900 underline decoration-nzOrange-500 decoration-2 underline-offset-4">"חינוך מחבק"</span>:
+                    </p>
+
+                    <!-- City vision pillars styled beautifully -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                        <div class="bg-nzBlue-50/50 p-4 rounded-2xl border border-nzBlue-100/50">
+                            <span class="text-xs font-black text-nzOrange-500 block mb-1">مצוינות וחדשנות</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">אנו פותחים בפני התלמידים והמורים דרכי הוראה ולמידה מתקדמות.</p>
+                        </div>
+                        <div class="bg-nzOrange-50/50 p-4 rounded-2xl border border-nzOrange-100/50">
+                            <span class="text-xs font-black text-nzBlue-900 block mb-1">אוטונומיה ובחירה</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">התלמידים מקבלים אוטונומיה רבה יותר על תהליך הלמידה שלהם ויכולים לבטא את עצמם בדרכים מגוונות.</p>
+                        </div>
+                        <div class="bg-nzBlue-50/50 p-4 rounded-2xl border border-nzBlue-100/50">
+                            <span class="text-xs font-black text-nzOrange-500 block mb-1">שותפות וקהילתיות</span>
+                            <p class="text-xs text-slate-600 leading-relaxed">הלמידה הופכת שיתופית יותר, חוצת גבולות כיתה ובית ספר.</p>
+                        </div>
+                    </div>
+
+                    <p>
+                        המעבר לסביבת למידה המשלבת סביבות טכנו-פדגוגיות מתקדמות, ספרים ומחברות דיגיטליות וכלי בינה מלאכותית יוצרת, מאפשר לנו לעצב מחדש את דרכי ההוראה, לעבור מהוראה ממוקדת-מורה ללמידה ממוקדת-תלמיד, לקדם למידה מותאמת אישית, לחזק עבודת צוות ולפתח אוריינות דיגיטלית. בנוסף, התוכנית תורמת להפחתה משמעותית במשקל הילקוטים של תלמידינו.
+                    </p>
+                    <p>
+                        התוכנית תוטמע בגישה אג'ילית ומדורגת, שתחל בבחירת שני בתי ספר חלוצים בתשפ"ז בהם נתחיל עם <strong class="text-nzOrange-600 font-black">שכבת כיתות ז'</strong> כדי ליצור קהילה לומדת ורציפות גילאית. לאחר סיום שנת ההטמעה הראשונה, הפרויקט יתרחב לשאר בתי הספר ולשכבות נוספות.
+                    </p>
+                    <p>
+                        הצלחת המהלך תלויה במחויבות של הצוות החינוכי ובבניית שותפות איתנה עם קהילת ההורים. העירייה תסייע לבתי הספר שיבחרו להצליח בפרויקט בהתאם לקול קורא המצורף מטה.
+                    </p>
+                    
+                    <p class="font-bold text-nzBlue-900 text-lg mt-4">
+                        אנו מזמינים אתכם לקחת חלק בהובלת המהפכה הפדגוגית של נס ציונה.
+                    </p>
+                </div>
+
+                <!-- Senders Signature Area - Clean alignment without any additional target year badges -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-t border-slate-100 pt-6 mt-6">
+                    <div class="flex items-center space-x-4 space-x-reverse mb-4 sm:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-nzBlue-50 text-nzBlue-900 flex items-center justify-center text-xl shadow-inner border border-nzBlue-100">
+                            <i class="fa-solid fa-signature"></i>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="text-lg font-bold text-nzBlue-900">אסתי יוסף & יורם לווין</h3>
+                            <p class="text-xs text-slate-400">מנהלת אגף החינוך & מנהל בתי הספר העל-יסודיים</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive Accordion Section Title -->
+        <h3 class="text-lg font-black text-nzBlue-900 mb-4 pr-1 flex items-center">
+            <span class="w-2.5 h-6 bg-nzOrange-500 rounded-full ml-2"></span>
+            פרטי הקול הקורא (לחצו לפתיחת המידע)
+        </h3>
+
+        <!-- Accordions Container -->
+        <div class="space-y-4 mb-10">
+
+            <!-- 1. Timeline Accordion -->
+            <div id="acc-timeline" class="bg-white rounded-2xl shadow-premium border border-slate-100 overflow-hidden transition-all duration-300 hover:border-nzOrange-500/30 hover:shadow-premium-hover">
+                <button onclick="toggleAccordion('acc-timeline')" class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right focus:outline-none transition-colors duration-200">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 rounded-xl bg-nzBlue-50 text-nzBlue-900 flex items-center justify-center shadow-inner">
+                            <i class="fa-solid fa-route text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg font-black text-nzBlue-900 block leading-tight">לוחות זמנים לתהליך</span>
+                            <span class="text-xs text-slate-400 font-medium">אבני הדרך המרכזיות ומועדי ההחלטות</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <span class="text-xs bg-nzOrange-50 text-nzOrange-500 px-2 py-1 rounded-md font-bold shrink-0 hidden sm:inline-block">לחצו לצפייה</span>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 transition-transform duration-300 accordion-icon">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </div>
+                    </div>
+                </button>
+                <div class="accordion-content px-6 sm:px-10">
+                    <!-- Vertical Timeline -->
+                    <div class="relative border-r-2 border-slate-100 mr-5 mt-6 space-y-8 pb-4">
+                        
+                        <!-- Step 1 -->
+                        <div class="relative pr-8">
+                            <div class="absolute -right-[7px] top-1 bg-slate-400 rounded-full w-3.5 h-3.5 border-2 border-white shadow-sm"></div>
+                            <span class="inline-block px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full text-xs font-bold mb-1">התנעה ראשונית</span>
+                            <h4 class="text-base font-bold text-nzBlue-900">20 במאי 2026 &bull; התנעת התהליך והיערכות רשותית מוקדמת</h4>
+                            <p class="text-slate-500 text-sm mt-1">גיבוש עקרונות התוכנית ברשות, כתיבת המפרטים והנחיות התקשוב לקראת הפצת הקול הקורא.</p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative pr-8">
+                            <div class="absolute -right-[7px] top-1 bg-nzOrange-500 rounded-full w-3.5 h-3.5 border-2 border-white shadow-sm ring-4 ring-nzOrange-100"></div>
+                            <span class="inline-block px-2.5 py-0.5 bg-nzOrange-50 text-nzOrange-500 rounded-full text-xs font-bold mb-1">פרסום רשמי</span>
+                            <h4 class="text-base font-bold text-nzBlue-900">4 ביוני 2026 &bull; פרסום הקול הקורא</h4>
+                            <p class="text-slate-500 text-sm mt-1">הפצה רשמית של הקול קורא לכלל מנהלי בתי הספר התיכוניים וחטיבות הביניים בנס ציונה.</p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative pr-8">
+                            <div class="absolute -right-[7px] top-1 bg-nzBlue-500 rounded-full w-3.5 h-3.5 border-2 border-white shadow-sm"></div>
+                            <span class="inline-block px-2.5 py-0.5 bg-rose-50 text-rose-500 rounded-full text-xs font-bold mb-1">מועד קשיח להגשה</span>
+                            <h4 class="text-base font-bold text-nzBlue-900">14 ביוני 2026 &bull; מועד אחרון להגשת בקשת הצטרפות</h4>
+                            <p class="text-slate-500 text-sm mt-1">סגירת שאלון המוכנות ומילוי כלל פרטי הבקשה כולל התחייבויות המנהלים בטופס הדיגיטלי.</p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative pr-8">
+                            <div class="absolute -right-[7px] top-1 bg-nzBlue-500 rounded-full w-3.5 h-3.5 border-2 border-white shadow-sm"></div>
+                            <span class="inline-block px-2.5 py-0.5 bg-nzBlue-50 text-nzBlue-500 rounded-full text-xs font-bold mb-1">הליך סינון</span>
+                            <h4 class="text-base font-bold text-nzBlue-900">22 ביוני 2026 &bull; וועדת בחינה וראיונות</h4>
+                            <p class="text-slate-500 text-sm mt-1">התכנסות הוועדה לבחינת התאמת בתי הספר. הבחינה כוללת ניקוד תבחינים וראיונות (נדרש לקבל לפחות 70% מענה במדדי הניקוד).</p>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="relative pr-8">
+                            <div class="absolute -right-[7px] top-1 bg-slate-400 rounded-full w-3.5 h-3.5 border-2 border-white shadow-sm"></div>
+                            <span class="inline-block px-2.5 py-0.5 bg-slate-100 text-slate-500 rounded-full text-xs font-bold mb-1">בדיקה טכנולוגית בשטח</span>
+                            <h4 class="text-base font-bold text-nzBlue-900">30 ביוני 2026 &bull; סיום בדיקת תשתיות האינטרנט ע"י המנמ"ר</h4>
+                            <p class="text-slate-500 text-sm mt-1">השלמת בדיקות פיזיות של קליטת Wi-Fi, קווי סיב אופטי ותשתיות שקעים בכיתות לכל מועמד.</p>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div class="relative pr-8">
+                            <div class="absolute -right-[7px] top-1 bg-emerald-500 rounded-full w-3.5 h-3.5 border-2 border-white shadow-sm ring-4 ring-emerald-100"></div>
+                            <span class="inline-block px-2.5 py-0.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold mb-1">הכרזה רשמית</span>
+                            <h4 class="text-base font-bold text-nzBlue-900">1 ביולי 2026 &bull; קבלת הודעה בדבר אישור הצטרפות לתוכנית</h4>
+                            <p class="text-slate-500 text-sm mt-1">שליחת הודעות רשמיות לשני בתי הספר החלוצים שנבחרו, חתימה על ההסכם ותחילת היערכות מעשית.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Principles Accordion -->
+            <div id="acc-principles" class="bg-white rounded-2xl shadow-premium border border-slate-100 overflow-hidden transition-all duration-300 hover:border-nzOrange-500/30 hover:shadow-premium-hover">
+                <button onclick="toggleAccordion('acc-principles')" class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right focus:outline-none transition-colors duration-200">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 rounded-xl bg-nzBlue-50 text-nzBlue-900 flex items-center justify-center shadow-inner">
+                            <i class="fa-solid fa-shapes text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg font-black text-nzBlue-900 block leading-tight">עקרונות הבחירה וההצטרפות</span>
+                            <span class="text-xs text-slate-400 font-medium">עשרת עקרונות המפתח להצטרפות לתוכנית</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <span class="text-xs bg-nzOrange-50 text-nzOrange-500 px-2 py-1 rounded-md font-bold shrink-0 hidden sm:inline-block">לחצו לצפייה</span>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 transition-transform duration-300 accordion-icon">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </div>
+                    </div>
+                </button>
+                <div class="accordion-content px-6 sm:px-10">
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+                        ההצטרפות לתוכנית הנה מרצון ומבוססת על עמידה בעקרונות המובילים הבאים. אנא קראו אותם בעיון רב:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        
+                        <!-- Principle 1 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-user-tie text-nzOrange-500"></i>
+                                <span>התחייבות מנהלי בתי הספר</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                מנהלי בתי הספר (הן בחטיבה העליונה והן בחטיבת הביניים) מתחייבים אישית לקידום והובלת הפרויקט ב<strong class="text-nzBlue-900 font-black">שכבת כיתות ז'</strong>.
+                            </p>
+                        </div>
+
+                        <!-- Principle 2 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-brain text-nzOrange-500"></i>
+                                <span>מוכנות לחדשנות פדגוגית</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                נכונות מעשית למימוש חדשנות פדגוגית, התאמת תוכניות הלימודים, שילוב סביבות טכנולוגיות ואימוץ מרחבי למידה גמישים.
+                            </p>
+                        </div>
+
+                        <!-- Principle 3 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-users-gear text-nzOrange-500"></i>
+                                <span>מינוי צוות מוביל בית ספרי</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                הקמה ומינוי של צוות מורים מוביל וניהולי ייעודי לניהול, תיאום וקידום כלל היבטי התוכנית בבית הספר.
+                            </p>
+                        </div>
+
+                        <!-- Principle 4 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-heart-circle-check text-nzOrange-500"></i>
+                                <span>רתימת מורי השכבה (לבבות)</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                מינוי, גיוס ורתימה של צוות מורים מכלל השכבה בעלי מסוגלות, מוטיבציה גבוהה ורצון לקחת חלק במהפכה הפדגוגית.
+                            </p>
+                        </div>
+
+                        <!-- Principle 5 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-graduation-cap text-nzOrange-500"></i>
+                                <span>השתתפות בהכשרה השנתית</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                התחייבות מלאה של צוות המורים המשתתפים לקחת חלק בתוכנית ההכשרה השנתית המובנית של הפסג"ה.
+                            </p>
+                        </div>
+
+                        <!-- Principle 6 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-handshake-angle text-nzOrange-500"></i>
+                                <span>השתתפות במפגשים עירוניים</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                השתתפות פעילה במפגשים ובפורומים העירוניים המשותפים שייערכו לאורך השנה עבור צוותי הפרויקט.
+                            </p>
+                        </div>
+
+                        <!-- Principle 7 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-circle-nodes text-nzOrange-500"></i>
+                                <span>שדרוג תשתיות מחשוב</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                מיצוב, שיפור ושדרוג פיזי של תשתיות המחשוב, החשמל והאינטרנט בבית הספר לשם תמיכה מיטבית בתוכנית.
+                            </p>
+                        </div>
+
+                        <!-- Principle 8 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200 font-sans">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-laptop text-nzOrange-500"></i>
+                                <span>הצטיידות בניידים בלבד</span>
+                                <span class="bg-nzBlue-900 text-white text-[9px] px-1.5 py-0.5 rounded font-normal shrink-0">לפטופ בלבד</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                הבטחת הצטיידות במחשב אישי נייד (לפטופ) ואוזניות לכלל תלמידי השכבה, בתיאום הדוק עם ההורים ובהתאם להוראות חוזר מנכ"ל.
+                            </p>
+                        </div>
+
+                        <!-- Principle 9 -->
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 hover:bg-nzBlue-50/50 transition-colors duration-200 md:col-span-2">
+                            <div class="flex items-center space-x-2 space-x-reverse text-nzBlue-900 font-extrabold mb-1 text-sm">
+                                <i class="fa-solid fa-handshake text-nzOrange-500"></i>
+                                <span>מוכנות לתקצוב במימון משותף (Matching)</span>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                נכונות מלאה של בית הספר להשתתפות תקציבית פעילה ומימון הדדי של הנושאים השונים המוגדרים בשותפות עירייה-בי"ס (לפי הטבלה המצורפת).
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Support Envelope Accordion (Moved up per user request) -->
+            <div id="acc-envelope" class="bg-white rounded-2xl shadow-premium border border-slate-100 overflow-hidden transition-all duration-300 hover:border-nzOrange-500/30 hover:shadow-premium-hover">
+                <button onclick="toggleAccordion('acc-envelope')" class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right focus:outline-none transition-colors duration-200">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 rounded-xl bg-nzBlue-50 text-nzBlue-900 flex items-center justify-center shadow-inner">
+                            <i class="fa-solid fa-gift text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg font-black text-nzBlue-900 block leading-tight">מעטפת הליווי והתמיכה של העירייה</span>
+                            <span class="text-xs text-slate-400 font-medium">המשאבים, התקציבים והליווי המקצועי שהעירייה מעניקה לכם</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <span class="text-xs bg-nzOrange-50 text-nzOrange-500 px-2 py-1 rounded-md font-bold shrink-0 hidden sm:inline-block">לחצו לצפייה</span>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 transition-transform duration-300 accordion-icon">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </div>
+                    </div>
+                </button>
+                <div class="accordion-content px-6 sm:px-10">
+                    <p class="text-slate-500 text-sm mb-6 leading-relaxed">
+                        אנחנו מבינים שהטמעת מהלך פדגוגית כה משמעותית דורשת משאבים רבים וסיוע צמוד. עיריית נס ציונה תעניק לבתי הספר שייבחרו מעטפת תמיכה חסרת תקדים הכוללת את כל הסעיפים הבאים ללא פשרות:
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        
+                        <!-- Support 1 & 2 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-user-tie text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">מנהל פרויקט עירוני וועדות היגוי</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">מינוי מנהל פרויקט עירוני בעל ניסיון רלוונטי שילווה באופן קבוע את צוות הניהול בבתי הספר, לצד קיום ועדות היגוי עיתיות לליווי התהליך ובקרתו.</p>
+                            </div>
+                        </div>
+
+                        <!-- Support 3 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-person-chalkboard text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">מדריכה פדגוגית בית-ספרית אישית</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">איתור וגיוס מדריכה פדגוגית עירונית שתוקצה במיוחד לפרויקט ותלווה את צוותי החינוך בתוך ביה"ס בהיקף של יום בשבוע (7 ש"ש).</p>
+                            </div>
+                        </div>
+
+                        <!-- Support 4 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-graduation-cap text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">מלגות, השאלה ומניעת פערים (שוויון)</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">סיוע תקציבי בהפעלת מערך מלגות לתלמידים והשאלת מחשבים למשפחות זכאיות, בכפוף לוועדת מלגות בית ספרית – למניעת פערים וקידום שוויון.</p>
+                            </div>
+                        </div>
+
+                        <!-- Support 5 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-laptop text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">הצטיידות במחשב לצוות המורים (50%)</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">השתתפות עירונית של 50% ברכישת לפטופ חדש לכל מורה שלוקח חלק בתוכנית בשכבה (מחנכים ומורים מקצועיים).</p>
+                            </div>
+                        </div>
+
+                        <!-- Support 6 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-screwdriver-wrench text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">מימון ושדרוג תשתיות ובינוי</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">סיוע במימון והתאמה פיזית של תשתיות התקשוב, האינטרנט ורשת החשמל (שקעים) בכיתות בשיתוף והנחיית המנמ"ר.</p>
+                            </div>
+                        </div>
+
+                        <!-- Support 7 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-calendar-check text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">מפגשים עירוניים משותפים</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">ייזום וקיום של 4 מפגשים עירוניים משותפים בשנה לצוותי הפרויקט לשיתוף בידע, למידת עמיתים והעצמה הדדית.</p>
+                            </div>
+                        </div>
+
+                        <!-- Support 8 -->
+                        <div class="flex items-start space-x-3 space-x-reverse p-3.5 bg-slate-50 rounded-xl border border-slate-100 md:col-span-2">
+                            <div class="w-8 h-8 rounded-lg bg-nzBlue-100 text-nzBlue-900 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-cart-shopping text-sm"></i>
+                            </div>
+                            <div class="text-right">
+                                <h5 class="text-sm font-bold text-nzBlue-900">מכרז רכש קבוצתי מוגן ומוזל להורים</h5>
+                                <p class="text-xs text-slate-400 mt-0.5">הובלת מכרז רכש עירוני מרוכז לרכישת לפטופים איכותיים להורים בהנחה משמעותית ביותר, עם תנאי תשלום נוחים ומבוקרים (לביה"ס הזכות לבצע זאת עצמאית).</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Criteria Accordion -->
+            <div id="acc-criteria" class="bg-white rounded-2xl shadow-premium border border-slate-100 overflow-hidden transition-all duration-300 hover:border-nzOrange-500/30 hover:shadow-premium-hover">
+                <button onclick="toggleAccordion('acc-criteria')" class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right focus:outline-none transition-colors duration-200">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 rounded-xl bg-nzBlue-50 text-nzBlue-900 flex items-center justify-center shadow-inner">
+                            <i class="fa-solid fa-clipboard-check text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg font-black text-nzBlue-900 block leading-tight">התבחינים / קריטריונים המלאים לבחירה</span>
+                            <span class="text-xs text-slate-400 font-medium">פירוט מלא של כלל מדדי המוכנות וההערכה של המועמדות</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <span class="text-xs bg-nzOrange-50 text-nzOrange-500 px-2 py-1 rounded-md font-bold shrink-0 hidden sm:inline-block">לחצו לצפייה</span>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 transition-transform duration-300 accordion-icon">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </div>
+                    </div>
+                </button>
+                <div class="accordion-content px-6 sm:px-10 space-y-6">
+                    <p class="text-slate-500 text-sm mt-2 leading-relaxed">
+                        בדיקת המועמדות של בתי הספר תתבסס על השאלון הדיגיטלי שיבחן את עמידת ביה"ס בתבחינים המדויקים הבאים. נדרש לפרט בטופס ההרשמה על עמידתכם בכלל הסעיפים הללו:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Criteria Block 1: Pedagogy & Vision -->
+                        <div class="space-y-3 bg-slate-50/50 p-4 rounded-xl border border-slate-100/50">
+                            <h4 class="font-bold text-nzBlue-900 border-b border-slate-200 pb-2 flex items-center text-sm">
+                                <i class="fa-solid fa-chalkboard-user ml-2 text-nzOrange-500"></i>
+                                פדגוגיה, מנהיגות וחזון
+                            </h4>
+                            <ul class="space-y-2 text-xs text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span>מנהל.ת 6 שנתי מתחייב לקידום הפרויקט במהלך ה-3 שנים הקרובות.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span>מנהלי חטיבות הביניים הביעו את הסכמתם המלאה בכתב להצטרף לתוכנית ולתנאיה.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span>מנהל.ת חט"ב בעל <strong class="text-nzBlue-900 font-black">ותק של שנה לפחות</strong> בבית הספר והכרות מעשית עמוקה עם עולם החדשנות והטכנו-פדגוגיה.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span>חט"ב הגדירה תוכנית חדשנות/טכנו-פדגוגית ברורה כחלק מהאסטרטגיה המוסדית שלה ל-3 השנים הקרובות קדימה.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>חדשנות פדגוגית:</strong> מוכנות ובשלות למעבר מהוראה פרונטלית ללמידה מבוססת מיומנויות, שילוב תוצרי STEAM ופיתוח מיומנויות של לומד עצמאי.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>התאמת תוכניות לימוד:</strong> התחייבות ללמוד, להתאים וליישם את תוכניות הלימודים בביה"ס על בסיס פרקטיקות הוראה המותאמות ל-BYOD.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>עבודה בענן ו-AI:</strong> יכולת מוכחת בעבודה שוטפת בסביבת ענן ארגונית (Google Classroom) ופתיחות מלאה לאימוץ כלי בינה מלאכותית (AI) בכיתות.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Criteria Block 2: Staff & Professional Development -->
+                        <div class="space-y-3 bg-slate-50/50 p-4 rounded-xl border border-slate-100/50">
+                            <h4 class="font-bold text-nzBlue-900 border-b border-slate-200 pb-2 flex items-center text-sm">
+                                <i class="fa-solid fa-user-group ml-2 text-nzOrange-500"></i>
+                                צוות מוביל ומחויבות מורים
+                            </h4>
+                            <ul class="space-y-2 text-xs text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>צוות מוביל בית ספרי:</strong> הקמה והפעלה של צוות ניהולי המורכב מ: מנהל, רכז פדגוגי, רכז שכבה, רכז תקשוב ומוביל התוכנית. השתתפות ב-5 מפגשי היגוי עירוניים לאורך השנה (המפגש הראשון יערך באוגוסט).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>מינוי מוביל BYOD בית ספרי:</strong> מינוי מוביל בעל ותק וניסיון של 3 שנים לפחות בפדגוגיה חדשנית וטכנולוגיה, בהיקף של לפחות 3 ש"ש ייעודיות לריכוז וליווי המהלך (בתיאום תגמול שעתי בהתאם).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>מפגשים עירוניים:</strong> התחייבות להשתתף ב-4 מפגשים עירוניים משותפים של שעתיים לצוותי הפרויקט שיתואמו מראש על ידי העירייה.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>מחויבות פיתוח מקצועי:</strong> מחויבות של מורי <strong class="text-nzBlue-900 font-bold">שכבת כיתות ז'</strong> לתוכנית השתלמות שנתית של 30 שעות, מפגשי מליאה ולמידה פרטנית אחת לשבוע בשיתוף הפסג"ה.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>איוש משרת רכז תקשוב:</strong> רכז תקשוב בית ספרי מנוסה בעל ותק של לפחות 3 שנים בבית הספר.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Criteria Block 3: Infrastructure & Equipment -->
+                        <div class="space-y-3 md:col-span-2 bg-slate-50/50 p-4 rounded-xl border border-slate-100/50">
+                            <h4 class="font-bold text-nzBlue-900 border-b border-slate-200 pb-2 flex items-center text-sm">
+                                <i class="fa-solid fa-laptop-code ml-2 text-nzOrange-500"></i>
+                                ציוד, תשתיות מחשוב וטכנולוגיה
+                            </h4>
+                            <ul class="space-y-2 text-xs text-slate-600 mb-4">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>ציוד קצה לתלמידים:</strong> חטיבות ביניים שבהן כלל התלמידים המשתתפים ב<strong class="text-nzBlue-900 font-bold">שכבת כיתות ז'</strong> יצויידו במחשב אישי נייד (לפטופ) ואוזניות אישיות בהתאם למפרט חוזר מנכ"ל.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 ml-1.5 mt-0.5 shrink-0"></i>
+                                    <span><strong>ציוד קצה למורים:</strong> נכונות מלאה להצטיידות במחשב נייד לכל מורה שלוקח חלק בתוכנית (מחנכים ומורים מקצועיים בשכבה).</span>
+                                </li>
+                            </ul>
+                            <!-- Grid representation of key tech parameters -->
+                            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 shadow-sm">
+                                    <i class="fa-solid fa-wifi text-nzBlue-500 text-lg mb-1 block"></i>
+                                    <span class="text-xs font-bold text-nzBlue-900 block">רוחב פס יציב</span>
+                                    <p class="text-[10px] text-slate-400 mt-1">חיבור קווי + אינטרנט אלחוטי ברוחב פס של לפחות 1 ג'יגה (סימטרי).</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 shadow-sm">
+                                    <i class="fa-solid fa-plug text-nzBlue-500 text-lg mb-1 block"></i>
+                                    <span class="text-xs font-bold text-nzBlue-900 block">טעינה בכיתות</span>
+                                    <p class="text-[10px] text-slate-400 mt-1">אפשרות מעשית לטעינה - הוספת לפחות 8 שקעי חשמל בכל כיתה.</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 shadow-sm">
+                                    <i class="fa-solid fa-screwdriver-wrench text-nzBlue-500 text-lg mb-1 block"></i>
+                                    <span class="text-xs font-bold text-nzBlue-900 block">משרת טכנאי זמין</span>
+                                    <p class="text-[10px] text-slate-400 mt-1">איוש משרת טכנאי זמין לתמיכה שוטפת ברמה יומית (שאינו רכז התקשוב).</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg text-center border border-slate-100 shadow-sm">
+                                    <i class="fa-solid fa-display text-nzBlue-500 text-lg mb-1 block"></i>
+                                    <span class="text-xs font-bold text-nzBlue-900 block">בדיקת מנמ"ר</span>
+                                    <p class="text-[10px] text-slate-400 mt-1">מוכנות מלאה להתאמה ולשדרוג תשתיות התקשוב בתיאום והנחיה של מנמ"ר העירייה.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Budget Accordion -->
+            <div id="acc-budget" class="bg-white rounded-2xl shadow-premium border border-slate-100 overflow-hidden transition-all duration-300 hover:border-nzOrange-500/30 hover:shadow-premium-hover">
+                <button onclick="toggleAccordion('acc-budget')" class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right focus:outline-none transition-colors duration-200">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-10 h-10 rounded-xl bg-nzBlue-50 text-nzBlue-900 flex items-center justify-center shadow-inner">
+                            <i class="fa-solid fa-calculator text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="text-lg font-black text-nzBlue-900 block leading-tight">מימון משותף (Matching) ותקציבים מפורטים</span>
+                            <span class="text-xs text-slate-400 font-medium">טבלת חלוקת ההשקעה בפועל ברמת בית ספר בודד</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <span class="text-xs bg-nzOrange-50 text-nzOrange-500 px-2 py-1 rounded-md font-bold shrink-0 hidden sm:inline-block">לחצו לצפייה</span>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 transition-transform duration-300 accordion-icon">
+                            <i class="fa-solid fa-chevron-down text-sm"></i>
+                        </div>
+                    </div>
+                </button>
+                <div class="accordion-content px-4 sm:px-10">
+                    <p class="text-slate-500 text-sm mb-4 leading-relaxed">
+                        להלן מתווה המימון המשותף לשנת ההטמעה הראשונה (תשפ"ז). הנתונים מוצגים <strong class="text-nzBlue-900">עבור בית ספר בודד (הסכומים באלפי שקלים - אש"ח)</strong>:
+                    </p>
+                    
+                    <!-- Styled Responsive Budget Table -->
+                    <div class="overflow-hidden rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-slate-100 text-right">
+                                <thead class="bg-slate-50 text-nzBlue-900 font-extrabold text-xs tracking-wider">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-4 text-right">מרכיב תקציבי</th>
+                                        <th scope="col" class="px-4 py-4 text-center">מימון בית ספר (אש"ח)</th>
+                                        <th scope="col" class="px-4 py-4 text-center">מימון עירייה (אש"ח)</th>
+                                        <th scope="col" class="px-4 py-4 text-right">הערות / משמעות (מתוך מסמך היסוף)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 bg-white text-sm text-slate-600">
+                                    <tr class="hover:bg-slate-50/50 transition-colors">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs">מנהל פרוייקט עירוני</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-slate-400">0</td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-emerald-600">35</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400">ליווי וחניכת הצוות הניהולי בבית הספר</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/50 transition-colors">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs">תשתיות מחשוב ובינוי</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-nzOrange-500">בהתאם לצורך</td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-emerald-600">50</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400">תשתיות מחשוב ובינוי - הגדלת רוחב הפס, תוספת שקעים בכיתות וכו'</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/50 transition-colors">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs">הגדלה ושדרוג רוחב הפס</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-slate-400">0</td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-emerald-600">12</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400 font-sans">מעבר מקו מנב"ס לקו עסקי יציב עם רוחב פס של 1 גיגה.</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/50 transition-colors">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs">מלגות</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-slate-400">0</td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-emerald-600">25</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400">בהתאם לועדת מילגות בית ספרית</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/50 transition-colors bg-nzOrange-50/20">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs flex items-center">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-nzOrange-500 ml-1"></span>
+                                            מחשב נייד לצוות החינוכי
+                                        </td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-nzOrange-500">20</td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-emerald-600">20</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400">השתתפות ב- 50% מעלות המחשבים</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/50 transition-colors">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs">הדרכה אישית וחניכה</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-slate-400">0</td>
+                                        <td class="px-4 py-3.5 text-center font-extrabold text-emerald-600">100</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400 font-sans">7 ש״ש לליווי פרטני של בית הספר, יוקצה מתוך מאגר שעות התקן העירוניות, רכש דרך גפ״ן או קליטת מורה בשעות הוראה</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/50 transition-colors">
+                                        <td class="px-4 py-3.5 font-bold text-nzBlue-900 text-xs">השתלמות בית ספרית</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-slate-400">0</td>
+                                        <td class="px-4 py-3.5 text-center font-bold text-slate-400">0</td>
+                                        <td class="px-4 py-3.5 text-xs text-slate-400 font-sans">ליווי קהילת מורים בבית הספר - השתלמות ייעודית בהיקף של כ- 30 שעות לכלל המורים בחטיבה - פיתוח מקצועי</td>
+                                    </tr>
+                                    <!-- Total row -->
+                                    <tr class="bg-nzBlue-50 text-nzBlue-900 font-extrabold border-t-2 border-slate-200">
+                                        <td class="px-4 py-4 text-xs font-black">סה"כ מימון לשנה (לבי"ס בודד)</td>
+                                        <td class="px-4 py-4 text-center text-nzOrange-600 font-black text-sm">20 אש"ח + לפי צורך</td>
+                                        <td class="px-4 py-4 text-center text-emerald-700 font-black text-base">242 אש"ח</td>
+                                        <td class="px-4 py-4 text-xs font-medium text-nzBlue-900">על כל שקל שבית הספר משקיע, העירייה משקיעה כ-12 שקלים לקידום הפרויקט!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Professional Doc Kit Callout (As requested, elegantly styled at the end of the page) -->
+        <section class="mb-8">
+            <h3 class="text-lg font-black text-nzBlue-900 mb-3 pr-1 flex items-center">
+                <span class="w-2.5 h-6 bg-nzBlue-900 rounded-full ml-2"></span>
+                המלצה לקריאה נוספת והעמקה
+            </h3>
+            <div class="p-6 bg-nzBlue-50/80 border border-nzBlue-200/60 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm">
+                <div class="flex items-center space-x-3 space-x-reverse text-right">
+                    <div class="w-12 h-12 rounded-2xl bg-nzBlue-500 text-white flex items-center justify-center shadow-md shrink-0">
+                        <i class="fa-solid fa-book-open text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-black text-nzBlue-900 leading-tight">מצפן BYOD: קיט היערכות מלא למנהלים</h4>
+                        <p class="text-xs text-slate-500 mt-1">מומלץ לקרוא ולהעמיק במדריכים, נהלי העבודה והטפסים המלווים לפני מילוי השאלון.</p>
+                    </div>
+                </div>
+                <button onclick="openKitModal()" class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center px-6 py-3.5 bg-nzOrange-500 hover:bg-nzOrange-600 text-white font-black text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-[11px]"></i>
+                    לחצו לפתיחת הקיט למנהל
+                </button>
+            </div>
+        </section>
+
+        <!-- Premium Bottom Call To Action Banner -->
+        <section class="bg-white rounded-3xl p-8 sm:p-10 shadow-premium border border-slate-100 text-center max-w-2xl mx-auto transform transition duration-300 hover:shadow-premium-hover">
+            <h3 class="text-2xl font-black text-nzBlue-900 mb-3">האם חטיבת הביניים שלך מוכנה להוביל?</h3>
+            <p class="text-slate-500 text-sm mb-6 max-w-md mx-auto">
+                הצטרפו למהפכה הטכנו-פדגוגית של נס ציונה. מילוי השאלון אורך כ-10 דקות וישקף עבורנו את רמת המוכנות של ביה"ס שלכם.
+            </p>
+            <a href="https://forms.gle/s4M4KGuP6gLAgmiUA" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-black rounded-2xl text-white bg-nzOrange-500 hover:bg-nzOrange-600 focus:outline-none focus:ring-4 focus:ring-nzOrange-500/50 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-square-poll-horizontal ml-2"></i>
+                מעבר לשאלון התבחינים הדיגיטלי
+            </a>
+            <div class="flex items-center justify-center space-x-4 space-x-reverse mt-4 text-xs text-slate-400 font-medium">
+                <span><i class="fa-solid fa-lock ml-1 text-slate-300"></i>מילוי מאובטח</span>
+                <span>&bull;</span>
+                <span><i class="fa-solid fa-clock ml-1 text-slate-300"></i>כ-10 דקות מענה</span>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="mt-16 text-center text-xs text-slate-400 border-t border-slate-200/80 pt-8 pb-4">
+            <p class="font-bold text-slate-500">&copy; כל הזכויות שמורות לעיריית נס ציונה - אגף החינוך, 2026</p>
+            <p class="mt-1.5 leading-relaxed font-sans">
+                הקול קורא נערך ומוגש בכפוף להוראות חוזר מנכ"ל המעודכן בנושא הסדרת השימוש של תלמידים באמצעי קצה לצורך למידה.<br>
+                לשאלות, הבהרות ובירורים נוספים ניתן לפנות במייל או בטלפון ישירות ליורם לווין או לרמי שקד.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Manager Kit Custom Document Viewer Modal (Google Docs view) -->
+    <div id="kit-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-nzBlue-900/60 backdrop-blur-sm hidden" role="dialog" aria-modal="true">
+        <div class="bg-white rounded-3xl max-w-3xl w-full h-[90vh] shadow-2xl border border-slate-100 overflow-hidden flex flex-col transform scale-95 transition-all duration-300">
+            <!-- Modal Header -->
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-nzBlue-50/50">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-10 h-10 rounded-xl bg-nzOrange-500 text-white flex items-center justify-center shadow-md">
+                        <i class="fa-solid fa-file-invoice text-lg"></i>
+                    </div>
+                    <div class="text-right">
+                        <h3 class="text-base font-black text-nzBlue-900 leading-tight">מצפן BYOD: קיט היערכות דיגיטלי למנהל</h3>
+                        <p class="text-[11px] text-slate-500">עיריית נס ציונה - תוכנית BYOD תשפ"ז</p>
+                    </div>
+                </div>
+                <!-- Controls and Close -->
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <a href="https://docs.google.com/document/d/1ef3WCK0RwjS5K4rwgjIjzx1hwCuqND3eXWi9NhzjzFY/edit?usp=sharing" target="_blank" class="px-3.5 py-1.5 bg-nzBlue-900 hover:bg-nzBlue-950 text-white text-xs font-extrabold rounded-lg flex items-center space-x-1.5 space-x-reverse transition-all shadow-sm">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                        <span>פתח בחלון מלא</span>
+                    </a>
+                    <button onclick="closeKitModal()" class="text-slate-400 hover:text-slate-600 focus:outline-none w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Iframe Container with notice -->
+            <div class="flex-1 bg-slate-100 relative overflow-hidden flex flex-col">
+                <div class="p-3 bg-amber-50 border-b border-amber-200 text-right text-xs text-amber-800 flex items-center space-x-2 space-x-reverse">
+                    <i class="fa-solid fa-circle-info shrink-0"></i>
+                    <span>המסמך נטען ישירות מחשבון ה-Google Docs הרשמי. במידה והמסמך אינו מוצג בצורה תקינה, לחצו על כפתור <strong>"פתח בחלון מלא"</strong> שבחלקו העליון של המסך.</span>
+                </div>
+                <iframe src="https://docs.google.com/document/d/1ef3WCK0RwjS5K4rwgjIjzx1hwCuqND3eXWi9NhzjzFY/preview" class="w-full flex-1 border-0" allow="autoplay" title="קיט למנהל"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Interactive Scripting Logic -->
+    <script>
+        /**
+         * Toggles the accordion state by applying the open CSS classes and dynamic transitions.
+         * Ensures that only one accordion is open at a time for elegant mobile/desktop viewing.
+         */
+        function toggleAccordion(id) {
+            const accordion = document.getElementById(id);
+            const isOpen = accordion.classList.contains('accordion-open');
+            
+            // Close other accordions for a singular clean view
+            document.querySelectorAll('.accordion-open').forEach(el => {
+                if (el.id !== id) {
+                    el.classList.remove('accordion-open');
+                }
+            });
+
+            // Toggle selected element
+            if (isOpen) {
+                accordion.classList.remove('accordion-open');
+            } else {
+                accordion.classList.add('accordion-open');
+            }
+        }
+
+        /**
+         * Open Document Kit Floating Modal
+         */
+        function openKitModal() {
+            const modal = document.getElementById('kit-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        }
+
+        /**
+         * Close Document Kit Floating Modal
+         */
+        function closeKitModal() {
+            const modal = document.getElementById('kit-modal');
+            modal.firstElementChild.classList.remove('scale-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 150);
+        }
+
+        // On document load, ensure all accordions start closed per user instructions.
+        window.addEventListener('DOMContentLoaded', () => {
+            // All starting closed, no auto-open action.
+        });
+    </script>
+</body>
+</html>
